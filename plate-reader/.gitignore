@@ -1,0 +1,16 @@
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.pytest_cache/
+.venv/
+venv/
+
+# Model weights and generated artifacts
+*.pt
+*.onnx
+examples/sample_plate.jpg
+examples/sample_annotated.jpg
+examples/sample_results.json

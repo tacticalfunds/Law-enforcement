@@ -1,0 +1,16 @@
+# Core (required) — classical detector + Tesseract OCR
+numpy>=1.24
+opencv-python-headless>=4.8
+pytesseract>=0.3.10
+# Tesseract itself is a system package, not pip-installable:
+#   Debian/Ubuntu:  apt-get install tesseract-ocr
+#   macOS:          brew install tesseract
+#   Windows:        https://github.com/UB-Mannheim/tesseract/wiki
+
+# --- Optional, higher-accuracy backends -------------------------------------
+# YOLO plate detector (needs a .pt weights file):
+#   pip install ultralytics
+# Deep-learning OCR (downloads a model on first run):
+#   pip install easyocr
+# HTTP API service:
+#   pip install "fastapi[standard]"

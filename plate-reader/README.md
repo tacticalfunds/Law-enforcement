@@ -67,18 +67,70 @@ python -m plate_reader car.jpg \
 Useful flags: `--min-confidence`, `--fix-confusions` (normalize O→0, I→1, …),
 `--quiet`.
 
+### Bulk processing & export
+
+Point it at a directory to process large image sets in parallel and stream the
+results straight to disk in a portable format — CSV, JSON Lines, or JSON. The
+run is **memory-bounded**: results are flushed per image, so a folder of ten
+images and a folder of ten million use the same (small) amount of RAM.
+
+```bash
+# All CPU cores, stream to CSV (one row per detected plate)
+python -m plate_reader ./images --format csv --output plates.csv
+
+# JSON Lines with 8 workers; --quiet shows a live progress bar instead of
+# one line per image (ideal for very large runs)
+python -m plate_reader ./images --format jsonl -o plates.jsonl -j 8 --quiet
+
+# Interrupted a huge run? Re-run with --resume to skip what's already done
+python -m plate_reader ./images --format jsonl -o plates.jsonl --resume
+```
+
+Scaling flags:
+
+| Flag | Meaning |
+|---|---|
+| `--format {json,jsonl,csv}` | Export format for `--output` (default `json`). `jsonl`/`csv` stream and support resume. |
+| `--output, -o PATH` | Where to write results. |
+| `--workers, -j N` | Worker processes (`0` = all CPUs). |
+| `--resume` | Skip images already present in `--output` (`jsonl`/`csv`). |
+| `--no-recursive` | Don't descend into subdirectories. |
+
+CSV columns: `image, text, confidence, ocr_confidence, detect_score, detector,
+ocr_engine, x, y, w, h, error`. `--json PATH` remains as an alias for
+`--output PATH --format json`.
+
 ### Python API
 
 ```python
-from plate_reader import PlateReader
+from plate_reader import PlateReader, process, collect_images, build_writer
 
+# Single image
 reader = PlateReader(detector="contour", ocr="tesseract")
 for r in reader.read("car.jpg"):
     print(r.text, f"{r.confidence:.0%}", r.bbox.as_xyxy())
 
-# Or JSON-ready dicts:
-reader.read_to_dict("car.jpg")
+reader.read_to_dict("car.jpg")          # JSON-ready dicts
+
+# Bulk: parallel, streaming export over a folder you control
+images = collect_images("./images")
+with build_writer("csv", "plates.csv") as w:
+    stats = process(images, dict(detector="contour", ocr="tesseract"),
+                    on_result=w.write, workers=0)      # 0 = all CPUs
+print(stats)   # {"images": ..., "plates": ..., "seconds": ...}
 ```
+
+### Packaging / export as a library
+
+The project is a standard installable package (`pyproject.toml`):
+
+```bash
+pip install .                 # or:  pip install -e .   for editable installs
+python -m build               # build a wheel + sdist in dist/  (pip install build)
+```
+
+Installing it puts a `plate-reader` command on your PATH and makes
+`import plate_reader` available to other projects.
 
 ### HTTP service (the "bot")
 

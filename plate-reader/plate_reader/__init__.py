@@ -9,6 +9,11 @@ accuracy.
 
 from .types import Detection, PlateResult
 from .pipeline import PlateReader
+from .batch import collect_images, process
+from .export import build_writer
 
-__all__ = ["PlateReader", "Detection", "PlateResult"]
-__version__ = "0.1.0"
+__all__ = [
+    "PlateReader", "Detection", "PlateResult",
+    "process", "collect_images", "build_writer",
+]
+__version__ = "0.2.0"

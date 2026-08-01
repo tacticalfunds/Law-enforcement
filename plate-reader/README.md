@@ -132,6 +132,42 @@ python -m build               # build a wheel + sdist in dist/  (pip install bui
 Installing it puts a `plate-reader` command on your PATH and makes
 `import plate_reader` available to other projects.
 
+### VIN lookup (vehicle details from a VIN)
+
+Decode a vehicle's details from its **VIN** using NHTSA's free, public
+[vPIC API](https://vpic.nhtsa.dot.gov/api/) — no API key required. This returns
+**vehicle data only** (make, model, year, body, engine, plant, …); it does not
+return owners or any personal information.
+
+```bash
+# One VIN, pretty JSON
+python -m plate_reader.vin_cli 1HGCM82633A004352
+
+# Many VINs from a file, streamed to CSV (batched requests)
+python -m plate_reader.vin_cli --input-file vins.txt --format csv -o cars.csv
+
+# Offline: just validate format + check digit, no network call
+python -m plate_reader.vin_cli 1HGCM82633A004352 --validate-only
+```
+
+```python
+from plate_reader import decode_vin, decode_vins, is_valid_vin
+
+is_valid_vin("1HGCM82633A004352")          # -> True (check-digit validated)
+decode_vin("1HGCM82633A004352")            # -> {"Make": "HONDA", "Model": ...}
+decode_vins(open("vins.txt").read().split())   # batched, one dict per VIN
+```
+
+`is_valid_vin` and `vin_model_year` are offline helpers (ISO 3779 check digit,
+model-year hint) so you can screen a large list before any network calls;
+`decode_vins` uses vPIC's batch endpoint (~50 VINs per request) to stay fast at
+scale. A `plate-reader-vin` console script is installed alongside `plate-reader`.
+
+> Note: a plate is **not** a VIN. Turning a plate into a VIN requires access to
+> vehicle-registration records, which are restricted (e.g. the US Driver's
+> Privacy Protection Act) — this tool decodes VINs you already hold; it does not
+> resolve plates to VINs or owners.
+
 ### HTTP service (the "bot")
 
 ```bash

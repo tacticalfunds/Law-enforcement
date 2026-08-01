@@ -11,9 +11,11 @@ from .types import Detection, PlateResult
 from .pipeline import PlateReader
 from .batch import collect_images, process
 from .export import build_writer
+from .vin import decode_vin, decode_vins, is_valid_vin, vin_model_year
 
 __all__ = [
     "PlateReader", "Detection", "PlateResult",
     "process", "collect_images", "build_writer",
+    "decode_vin", "decode_vins", "is_valid_vin", "vin_model_year",
 ]
-__version__ = "0.2.0"
+__version__ = "0.3.0"

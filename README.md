@@ -58,6 +58,29 @@ python3 -m plate_records plate ABC123 CA --provider mock --purpose "insurance cl
 The `plate` command **refuses** to run without a `--purpose`, mirroring how a
 DPPA-compliant provider must gate every owner lookup.
 
+## Web search & page review
+
+A general research utility: search the web via a real search API, and fetch a
+page to extract its readable text for review.
+
+```bash
+# Web search (only the demo 'mock' provider ships; add your own API key):
+python3 -m plate_records search "1967 mustang restoration" --provider mock --count 5
+
+# Fetch a URL and extract its readable text:
+python3 -m plate_records review https://example.com --limit 3000
+```
+
+`search` is a scriptable wrapper over a search API (Brave / Bing / Google
+Programmable Search / SerpAPI). Register a real provider in
+`plate_records/search.py` (`SEARCH_PROVIDERS`) with your own key. `review` uses
+only the standard library to pull a page's title and text.
+
+This is a general query-in / public-results-out tool. It intentionally does
+**not** aggregate or profile personal information about individuals, scrape
+people-search / data-broker sites, or link a plate or vehicle to a person's
+identity.
+
 ## Legal boundary (read this)
 
 Consumer "look up any plate" sites do **not** have a magic pipe into the DMV.

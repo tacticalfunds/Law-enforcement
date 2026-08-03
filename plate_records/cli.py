@@ -20,6 +20,7 @@ import sys
 from .http import HTTPError
 from .providers import get_provider
 from .recalls import lookup_recalls
+from .search import fetch_readable, get_search_provider
 from .vin import decode_vin
 
 
@@ -95,6 +96,30 @@ def cmd_plate(args) -> int:
     return 0
 
 
+def cmd_search(args) -> int:
+    provider = get_search_provider(args.provider)
+    results = provider.search(args.query, count=args.count)
+    if args.json:
+        _print([r.__dict__ for r in results], True)
+    else:
+        print(f"{len(results)} result(s) for {args.query!r} via {provider.name}:")
+        for i, r in enumerate(results, 1):
+            print(f"  {i}. {r.title}\n     {r.url}")
+            if r.snippet:
+                print(f"     {r.snippet}")
+    return 0
+
+
+def cmd_review(args) -> int:
+    page = fetch_readable(args.url)
+    if args.json:
+        _print({"url": page.url, "title": page.title, "text": page.preview(args.limit)}, True)
+    else:
+        print(f"# {page.title}\n{page.url}\n")
+        print(page.preview(args.limit))
+    return 0
+
+
 def build_parser() -> argparse.ArgumentParser:
     p = argparse.ArgumentParser(prog="plate-records", description=__doc__.splitlines()[0])
     p.add_argument("--json", action="store_true", help="emit JSON")
@@ -125,6 +150,17 @@ def build_parser() -> argparse.ArgumentParser:
     sp.add_argument("--provider", required=True)
     sp.add_argument("--purpose", help="DPPA permissible purpose (required by real providers)")
     sp.set_defaults(func=cmd_plate)
+
+    sp = sub.add_parser("search", help="web search via a search API (needs --provider)")
+    sp.add_argument("query")
+    sp.add_argument("--provider", default="mock", help="search provider (default: mock)")
+    sp.add_argument("--count", type=int, default=10, help="max results")
+    sp.set_defaults(func=cmd_search)
+
+    sp = sub.add_parser("review", help="fetch a URL and extract its readable text")
+    sp.add_argument("url")
+    sp.add_argument("--limit", type=int, default=2000, help="max characters of text to show")
+    sp.set_defaults(func=cmd_review)
 
     return p
 

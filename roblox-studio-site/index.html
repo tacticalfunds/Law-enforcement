@@ -643,8 +643,12 @@ section{scroll-margin-top:84px}
       <p class="eyebrow">Get in touch</p>
       <h2 style="font-size:clamp(2rem,5vw,3rem);margin-top:10px">Talk to us.</h2>
       <dl class="deets">
-        <div><dt>Business email</dt><dd><a href="#" data-bind="email">hello@overbuilt.gg</a></dd></div>
+        <div>
+          <dt>Discord</dt>
+          <dd><a data-bind="discord" href="#" target="_blank" rel="noopener noreferrer">discord.gg/sVCdMPAEF</a></dd>
+        </div>
       </dl>
+      <a class="btn btn--solid" data-bind="discord" href="#" target="_blank" rel="noopener noreferrer" style="margin-top:22px">Join the Discord</a>
     </div>
     <form class="card form reveal" id="contactForm" novalidate>
       <div class="f2">
@@ -682,11 +686,12 @@ section{scroll-margin-top:84px}
       </div>
       <div class="formfoot">
         <button class="btn btn--hot" type="submit">Send it over</button>
-        <small>Template note: this form validates locally. Wire <code>submitEnquiry()</code> to your own endpoint.</small>
+        <small>This form is not wired to a server yet — the Discord is the quickest route.</small>
       </div>
       <div class="sent" id="sent" hidden>
-        <b>Looks good — but nothing was sent.</b>
-        <p id="sentBody">This is a front-end template with no server behind it yet.</p>
+        <b>Looks good — but nothing was sent yet.</b>
+        <p id="sentBody"></p>
+        <p><a class="btn btn--sm" data-bind="discord" href="#" target="_blank" rel="noopener noreferrer">Bring it to the Discord</a></p>
       </div>
     </form>
   </div>
@@ -739,8 +744,10 @@ section{scroll-margin-top:84px}
    ================================================================ */
 const STUDIO = {
   name: "Red Lab Studios",        /* shows in the nav and footer */
-  email: "PLACEHOLDER",           /* swap for a real address to activate the mailto link */
-  links: { group: "#", discord: "#", x: "#", roblox: "#" },
+  links: {
+    discord: "https://discord.gg/sVCdMPAEF",
+    group: "#", x: "#", roblox: "#"
+  },
   /* Live catalogue. Visits / playing / maxPlayers come straight from each
      game's Roblox page — refreshLive() is where you point them at the API. */
   games: [
@@ -802,10 +809,6 @@ $$("[data-bind]").forEach(el => {
   const k = el.dataset.bind;
   if (k === "name") el.textContent = STUDIO.name;
   if (k === "gameCount") el.textContent = STUDIO.games.length;
-  if (k === "email") {
-    el.textContent = STUDIO.email;
-    el.href = STUDIO.email.includes("@") ? "mailto:" + STUDIO.email : "#";
-  }
   if (k === "groupLink") el.href = STUDIO.links.group;
   if (STUDIO.links[k]) el.href = STUDIO.links[k];
 });
@@ -928,7 +931,7 @@ form.addEventListener("submit", async e => {
   await submitEnquiry(data);
   const sent = $("#sent");
   $("#sentBody").textContent =
-    `Validated “${data.type}” from ${data.email}. This template has no server behind it — connect submitEnquiry() to your inbox, Discord webhook or form service and it will post for real.`;
+    `Checked over your “${data.type}” message from ${data.email}. This form has no server behind it yet — the fastest way to reach us is the Discord.`;
   sent.hidden = false;
   sent.scrollIntoView({ block: "nearest", behavior: calm ? "auto" : "smooth" });
 });

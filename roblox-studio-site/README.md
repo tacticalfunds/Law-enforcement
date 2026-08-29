@@ -50,8 +50,8 @@ const STUDIO = {
   board and all four stat tiles recompute from the array. The grid uses
   `auto-fit`, so any number of cards fills the row. Set `visits`, `live` or
   `maxPlayers` to `null` until you have the real figure.
-- **Name and email** — `STUDIO.name` and `STUDIO.email` both read `PLACEHOLDER`.
-  The email becomes a working `mailto:` link as soon as it contains an `@`.
+- **Name and links** — `STUDIO.name` and `STUDIO.links` drive the wordmark, the
+  footer icons and every Discord link on the page.
 - **Cover art** — generated in CSS from `c1`, `c2` and `pat`
   (`rays`, `stripes`, `grid`, `arcs`, `dots`, `bars`). To use real thumbnails,
   replace the `.cover` div in the grid template with an `<img>`.

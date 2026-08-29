@@ -2,7 +2,8 @@
 
 > **Status:** the drafted answers in `CONTENT-BRIEF-DRAFT.md` are now live on the
 > site. This file stays as the checklist — use it to correct anything I wrote.
-> Still genuinely blank: **2.1** business email and **2.6–2.8** the three URLs.
+> Still genuinely blank: **2.7** X and **2.8** the Roblox group URL. Contact now
+> runs through the Discord invite, so the email row (2.1) has been removed.
 > Still my invention and safest to replace: **4.2** (Boxing Club's description).
 > The deal figure and the payment terms have both been removed.
 > Cut from the page: the build log, the six criteria chips, §2.2–2.5, and the

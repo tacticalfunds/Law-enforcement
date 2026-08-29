@@ -219,20 +219,6 @@ section{scroll-margin-top:84px}
 .nowlist b{font-weight:700;font-size:.95rem}
 .nowlist span{font-family:"Martian Mono",monospace;font-size:.72rem;color:var(--live);font-variant-numeric:tabular-nums}
 
-/* ---- ticker ---- */
-.ticker{
-  border-block:2px solid var(--edge);background:var(--brand);color:var(--on-brand);
-  overflow:hidden;padding:11px 0;margin-top:44px;
-}
-.ticker__track{display:flex;width:max-content;animation:slide 42s linear infinite}
-.ticker:hover .ticker__track{animation-play-state:paused}
-.ticker span{
-  font-family:"Martian Mono",monospace;font-size:.66rem;font-weight:600;
-  text-transform:uppercase;letter-spacing:.12em;padding-inline:18px;white-space:nowrap;
-}
-.ticker span::after{content:"◆";margin-left:18px;opacity:.5}
-@keyframes slide{to{transform:translateX(-50%)}}
-
 /* ---- stats ---- */
 .counter{
   font-family:"Martian Mono",monospace;font-weight:600;
@@ -529,15 +515,8 @@ section{scroll-margin-top:84px}
 }
 .game:hover .cover::after{filter:brightness(1.6)}
 
-/* the mark, the ticker and the band rims all run the same film */
+/* the mark runs the same film */
 .mark__glyph{background-image:var(--holo);background-size:200% 100%;animation:holoDrift 11s linear infinite}
-.ticker{position:relative}
-.ticker::after{
-  content:"";position:absolute;inset:0;pointer-events:none;
-  background-image:var(--holo);background-size:200% 100%;
-  mix-blend-mode:overlay;opacity:.5;
-  animation:holoDrift 7s linear infinite;
-}
 
 /* specular sweep across the solid buttons */
 .btn--solid,.btn--hot{position:relative;overflow:hidden}
@@ -601,7 +580,6 @@ section{scroll-margin-top:84px}
       <p style="font-size:.76rem;color:var(--text-faint)">Player counts refresh every 30 seconds.</p>
     </div>
   </div>
-  <div class="ticker" aria-hidden="true"><div class="ticker__track" id="ticker"></div></div>
 </section>
 
 <!-- ============================ STATS ============================ -->
@@ -882,7 +860,7 @@ $("#filters").addEventListener("click", e => {
 });
 
 /* ================================================================
-   4. Live board, ticker and counters
+   4. Live board and counters
    ================================================================ */
 function paintLive(){
   const top = STUDIO.games.filter(g => g.live != null).sort((a, b) => b.live - a.live).slice(0, 5);
@@ -908,19 +886,6 @@ function refreshLive(){
   });
   paintLive();
 }
-
-(() => {
-  const strip = $("#ticker");
-  const run = byVisits
-    .filter(g => g.visits != null)
-    .map(g => `<span>${g.name} — ${compact(g.visits)} visits</span>`).join("");
-  if (!run) return;
-  strip.innerHTML = run;
-  /* repeat until one pass is wider than the viewport, then double it so the
-     -50% keyframe loops seamlessly however few games are listed */
-  for (let i = 0; i < 12 && strip.scrollWidth < innerWidth * 1.2; i++) strip.innerHTML += run;
-  strip.innerHTML += strip.innerHTML;
-})();
 
 function countTo(el, target){
   if (calm) { el.textContent = fmt(target); return; }

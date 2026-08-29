@@ -17,7 +17,6 @@ lifetime visits, so the section's claim stays true as you add entries.
 | Section | What it does |
 | --- | --- |
 | Hero | Studio pitch, two CTAs, and a live "playing right now" board |
-| Ticker | Scrolling marquee of every game and its lifetime visits |
 | Stats | Animated counters for visits, concurrents, experiences live, largest server |
 | Our games | Filterable catalogue with generated cover art, per-game metrics |
 | Acquisitions | What we look for, deal shape, and a three-step process for sellers |
@@ -64,8 +63,7 @@ const STUDIO = {
 - **Type** — Archivo 800 for display, Karla for body, Martian Mono for anything
   numeric. All three come from Google Fonts with real fallback stacks.
 - **Holographic layer** — `--holo` is one oil-slick gradient reused everywhere:
-  display type, the logo mark, card rims, cover sheens, the ticker and the
-  acquisitions rules. JS writes the pointer position into `--mx` / `--my`, which
+  display type, the logo mark, card rims and cover sheens. JS writes the pointer position into `--mx` / `--my`, which
   those gradients read as their background position, so the foil tilts as you
   move across the page; touch devices get a slow drift instead. The ambient
   canvas paints the same spectrum — dot size and hue both track one wave, giving

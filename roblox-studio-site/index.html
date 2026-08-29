@@ -109,7 +109,7 @@ img{max-width:100%}
 .btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--lift)}
 .btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--lift)}
 .btn--solid{background:var(--brand);color:var(--on-brand);border-color:var(--edge)}
-.btn--hot{background:var(--hot);color:var(--bg);border-color:var(--edge)}
+.btn--hot{background:var(--brand);color:var(--on-brand);border-color:var(--edge)}
 .btn--sm{padding:9px 16px;font-size:.85rem;box-shadow:3px 3px 0 var(--lift)}
 
 .card{
@@ -416,43 +416,45 @@ section{scroll-margin-top:84px}
 .log p{font-size:.86rem;color:var(--text-dim)}
 
 /* ---- acquisitions ---- */
-.acq{--bg:#FFF2F1;background:#A8111E;color:var(--bg)}   /* --bg is re-pointed so every mix below reads light on red */
-.acq .btn--solid{background:var(--bg);color:#8E0C16;border-color:var(--bg)}
-.acq .btn{box-shadow:4px 4px 0 rgba(0,0,0,.5)}
-.acq .btn:hover{box-shadow:6px 6px 0 rgba(0,0,0,.5)}
-.acq .eyebrow{color:color-mix(in srgb,var(--bg) 62%,transparent)}
-.acq .eyebrow::after{background:color-mix(in srgb,var(--bg) 26%,transparent)}
-.acq .sechead p{color:color-mix(in srgb,var(--bg) 76%,transparent)}
-.acq .rule{background:color-mix(in srgb,var(--bg) 30%,transparent)}
+.acq{
+  background:
+    radial-gradient(140% 90% at 50% 0%,rgba(216,18,31,.20),transparent 62%),
+    #150507;
+  border-block:2px solid var(--brand);
+}
+.acq .eyebrow{color:var(--hot)}
+.acq .eyebrow::after{background:rgba(255,92,104,.3)}
 .steps{display:grid;gap:14px;margin:0;padding:0;list-style:none;counter-reset:s}
 @media(min-width:760px){.steps{grid-template-columns:repeat(2,1fr)}}
 @media(min-width:1100px){.steps{grid-template-columns:repeat(4,1fr)}}
 .steps li{
   counter-increment:s;padding:20px 18px;border-radius:8px;
-  border:2px solid color-mix(in srgb,var(--bg) 34%,transparent);
+  border:2px solid var(--edge-soft);
+  background:rgba(0,0,0,.28);
   display:grid;gap:8px;align-content:start;
 }
 .steps li::before{
   content:counter(s,decimal-leading-zero);
   font-family:"Martian Mono",monospace;font-size:.72rem;font-weight:600;
-  color:color-mix(in srgb,var(--bg) 80%,transparent);
+  color:var(--hot);
 }
 .steps h3{font-size:1.05rem}
-.steps p{font-size:.87rem;color:color-mix(in srgb,var(--bg) 72%,transparent)}
+.steps p{font-size:.87rem;color:var(--text-dim)}
 .criteria{display:flex;flex-wrap:wrap;gap:9px;margin-top:8px}
 .criteria span{
   font-family:"Martian Mono",monospace;font-size:.58rem;font-weight:600;
   text-transform:uppercase;letter-spacing:.09em;
   padding:7px 12px;border-radius:999px;
-  border:2px solid color-mix(in srgb,var(--bg) 30%,transparent);
+  border:2px solid var(--edge-soft);
 }
 .acqgrid{display:grid;gap:34px;margin-bottom:40px}
 @media(min-width:900px){.acqgrid{grid-template-columns:1fr 1fr;gap:56px}}
 .offer{
-  border:2px solid color-mix(in srgb,var(--bg) 55%,transparent);border-radius:8px;padding:22px;
+  border:2px solid var(--brand);border-radius:8px;padding:22px;
+  background:rgba(0,0,0,.3);
   display:grid;gap:12px;
 }
-.offer .counter{color:var(--bg)}
+.offer .counter{color:var(--hot)}
 
 /* ---- contact ---- */
 .contact{display:grid;gap:34px}
@@ -696,7 +698,7 @@ section{scroll-margin-top:84px}
     <div class="acqgrid">
       <div class="reveal">
         <h3 style="font-size:1.3rem;margin-bottom:12px">What we look for</h3>
-        <p style="color:color-mix(in srgb,var(--bg) 74%,transparent);font-size:.95rem">PLACEHOLDER — the one thing you care about most in a game you would buy, and why it matters more than raw visit count.</p>
+        <p style="color:var(--text-dim);font-size:.95rem">PLACEHOLDER — the one thing you care about most in a game you would buy, and why it matters more than raw visit count.</p>
         <div class="criteria">
           <span>PLACEHOLDER 01</span>
           <span>PLACEHOLDER 02</span>
@@ -709,7 +711,7 @@ section{scroll-margin-top:84px}
       <div class="offer reveal">
         <p class="eyebrow eyebrow--plain" style="color:var(--brand)">PLACEHOLDER — deal label</p>
         <span class="counter">PLACEHOLDER</span>
-        <p style="color:color-mix(in srgb,var(--bg) 76%,transparent);font-size:.95rem">PLACEHOLDER — the shape of a typical deal: what it is a multiple of, the currency, and how payment is split.</p>
+        <p style="color:var(--text-dim);font-size:.95rem">PLACEHOLDER — the shape of a typical deal: what it is a multiple of, the currency, and how payment is split.</p>
       </div>
     </div>
     <ol class="steps">

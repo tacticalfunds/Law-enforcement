@@ -1,8 +1,9 @@
-# Overbuilt — Roblox game studio website template
+# Red Lab Studios — site
 
 A single-file, dependency-free marketing site for a Roblox game studio. Open
 `index.html` in a browser or drop it on any static host (GitHub Pages, Netlify,
-Cloudflare Pages) — there is no build step.
+Cloudflare Pages) — there is no build step. For Railway, which runs a process
+rather than serving files, `server.js` hands the page out; see `DEPLOY.md`.
 
 Every line of studio-defining copy reads `PLACEHOLDER` with a short hint about
 what belongs there — studio name, tagline, values, build log, acquisition terms,

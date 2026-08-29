@@ -1,0 +1,10 @@
+{
+  "name": "red-lab-studios-site",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Red Lab Studios marketing site — one static HTML file and a tiny server to hand it out.",
+  "engines": { "node": ">=18" },
+  "scripts": {
+    "start": "node server.js"
+  }
+}

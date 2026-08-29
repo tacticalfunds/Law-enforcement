@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Overbuilt — a Roblox game studio website template: live stats, game catalogue, spotlight vote, acquisitions pitch and contact form.">
+<meta name="description" content="A Roblox game studio website template: live stats, game catalogue, spotlight vote, acquisitions pitch and contact form.">
 <style>
   :root{color-scheme:light}
   body{margin:0}
@@ -443,11 +443,12 @@ section{scroll-margin-top:84px}
 }
 .log{display:grid;gap:0;margin:0;padding:0;list-style:none}
 .log li{
-  display:grid;grid-template-columns:82px 1fr;gap:14px;align-items:baseline;
+  display:grid;grid-template-columns:minmax(0,104px) 1fr;gap:14px;align-items:baseline;
   padding:13px 0;border-bottom:1px solid var(--edge-soft);
 }
 .log time{
   font-family:"Martian Mono",monospace;font-size:.6rem;font-weight:600;
+  overflow-wrap:anywhere;
   color:var(--text-faint);letter-spacing:.04em;
 }
 .log b{font-weight:700;font-size:.94rem}
@@ -608,9 +609,9 @@ section{scroll-margin-top:84px}
 <section class="hero">
   <div class="wrap hero__grid">
     <div>
-      <p class="eyebrow eyebrow--plain">Roblox studio · Est. 2019 · <span data-bind="gameCount">0</span> live experiences</p>
-      <h1>Small rooms.<br><span class="out">Loud</span> <em>worlds.</em></h1>
-      <p class="hero__sub">We are a seven-person Roblox studio building round-based chaos, tycoons that never sit still, and roleplay towns with too much lore. Play them, or bring us yours.</p>
+      <p class="eyebrow eyebrow--plain"><span>PLACEHOLDER — studio type · founded · <span data-bind="gameCount">0</span> live experiences</span></p>
+      <h1>PLACEHOLDER<br><span class="out">STUDIO</span> <em>TAGLINE.</em></h1>
+      <p class="hero__sub">PLACEHOLDER — two or three sentences on who you are, what you build, and why players keep coming back. This is the only paragraph most visitors read.</p>
       <div class="hero__cta">
         <a class="btn btn--solid" href="#games">See the games</a>
         <a class="btn" href="#acquire">Sell us your game</a>
@@ -655,7 +656,7 @@ section{scroll-margin-top:84px}
       <div>
         <p class="eyebrow">The catalogue</p>
         <h2>Our games</h2>
-        <p>Eight places, one group, and a shared codebase we have been sharpening since 2019. Sorted by lifetime visits.</p>
+        <p>PLACEHOLDER — one or two lines introducing your catalogue. Cards below are sorted by lifetime visits.</p>
       </div>
       <a class="btn btn--sm" href="#" data-bind="groupLink">Follow the group ↗</a>
     </div>
@@ -672,7 +673,7 @@ section{scroll-margin-top:84px}
       <div>
         <p class="eyebrow eyebrow--plain">Community pick</p>
         <h2 style="font-size:clamp(1.8rem,4.4vw,2.6rem);margin-top:10px">Vote for next week's spotlight</h2>
-        <p style="color:var(--text-dim);margin-top:12px;max-width:38ch">The winning game gets the front-page banner, a developer stream, and a limited UGC drop. One vote per player, resets Monday.</p>
+        <p style="color:var(--text-dim);margin-top:12px;max-width:38ch">PLACEHOLDER — say what the winning game actually gets: a banner, a stream, an event, a drop. One vote per player, resets Monday.</p>
         <div class="clock" id="clock" aria-label="Time until voting resets">
           <div><b data-c="d">0</b><small>days</small></div>
           <div><b data-c="h">00</b><small>hrs</small></div>
@@ -695,25 +696,25 @@ section{scroll-margin-top:84px}
     <div class="sechead reveal">
       <div>
         <p class="eyebrow">Who we are</p>
-        <h2>Seven people, one shared build</h2>
-        <p>No publisher, no outsourcing, no asset flips. Everything ships from the same repo and the same Tuesday night playtest.</p>
+        <h2>PLACEHOLDER — your studio in five words</h2>
+        <p>PLACEHOLDER — how the team works, who is on it, and what you refuse to do.</p>
       </div>
     </div>
     <div class="two">
       <ul class="values reveal">
-        <li><span class="k">01</span><div><h3>Ship on Thursdays</h3><p>Every game gets a real update every week. Not a re-skin, not a sale — a change players can feel in the first minute.</p></div></li>
-        <li><span class="k">02</span><div><h3>Playtest before pitch</h3><p>New mechanics go into a private place with 40 regulars before a single line of marketing copy is written.</p></div></li>
-        <li><span class="k">03</span><div><h3>Monetise the fun, not the wall</h3><p>No pay-to-progress, no timers you can only skip with Robux. Cosmetics, passes and events — the stuff people brag about.</p></div></li>
-        <li><span class="k">04</span><div><h3>Moderation is a feature</h3><p>Two full-time moderators, in-house chat filters, and a report queue we actually clear. Parents notice.</p></div></li>
+        <li><span class="k">01</span><div><h3>PLACEHOLDER — value 01</h3><p>PLACEHOLDER — one or two sentences on how this shows up in the work players actually see.</p></div></li>
+        <li><span class="k">02</span><div><h3>PLACEHOLDER — value 02</h3><p>PLACEHOLDER — one or two sentences on how this shows up in the work players actually see.</p></div></li>
+        <li><span class="k">03</span><div><h3>PLACEHOLDER — value 03</h3><p>PLACEHOLDER — one or two sentences on how this shows up in the work players actually see.</p></div></li>
+        <li><span class="k">04</span><div><h3>PLACEHOLDER — value 04</h3><p>PLACEHOLDER — one or two sentences on how this shows up in the work players actually see.</p></div></li>
       </ul>
       <div class="reveal">
         <p class="eyebrow">Build log</p>
         <ul class="log" style="margin-top:14px">
-          <li><time>18 Aug</time><div><b>Rooftop Rivals — Season 7</b><p>New borough, wall-run rework, ranked ladder out of beta.</p></div></li>
-          <li><time>11 Aug</time><div><b>Ridgeview High — Clubs update</b><p>Player-run clubs with shared funds, notice boards and elections.</p></div></li>
-          <li><time>04 Aug</time><div><b>Studio-wide</b><p>Rolled our own anti-exploit sync check across every place. Kick rate down 61%.</p></div></li>
-          <li><time>28 Jul</time><div><b>Nightline Metro — launch</b><p>Shipped out of paid access into open beta at 1.9M visits.</p></div></li>
-          <li><time>21 Jul</time><div><b>The Long Hall</b><p>Seasonal horror event returns for Halloween; co-op capped at six.</p></div></li>
+          <li><time>PLACEHOLDER</time><div><b>PLACEHOLDER — update title</b><p>PLACEHOLDER — what shipped and what changed for players.</p></div></li>
+          <li><time>PLACEHOLDER</time><div><b>PLACEHOLDER — update title</b><p>PLACEHOLDER — what shipped and what changed for players.</p></div></li>
+          <li><time>PLACEHOLDER</time><div><b>PLACEHOLDER — update title</b><p>PLACEHOLDER — what shipped and what changed for players.</p></div></li>
+          <li><time>PLACEHOLDER</time><div><b>PLACEHOLDER — update title</b><p>PLACEHOLDER — what shipped and what changed for players.</p></div></li>
+          <li><time>PLACEHOLDER</time><div><b>PLACEHOLDER — update title</b><p>PLACEHOLDER — what shipped and what changed for players.</p></div></li>
         </ul>
       </div>
     </div>
@@ -727,30 +728,34 @@ section{scroll-margin-top:84px}
       <div>
         <p class="eyebrow">Game acquisitions</p>
         <h2>We buy Roblox games.</h2>
-        <p>If you built something with real retention and you are out of time, energy or Robux to run it — we will take it on, keep your name on it, and pay you for it.</p>
+        <p>PLACEHOLDER — what you offer developers who want to sell: what you take on, what stays theirs, and how they get paid.</p>
       </div>
       <a class="btn btn--solid" href="#contact">Start a conversation</a>
     </div>
     <div class="acqgrid">
       <div class="reveal">
         <h3 style="font-size:1.3rem;margin-bottom:12px">What we look for</h3>
-        <p style="color:color-mix(in srgb,var(--bg) 74%,transparent);font-size:.95rem">We care far more about the shape of your retention curve than your visit count. A 40k-visit game that people come back to on day seven beats a 4M-visit game they never reopen.</p>
+        <p style="color:color-mix(in srgb,var(--bg) 74%,transparent);font-size:.95rem">PLACEHOLDER — the one thing you care about most in a game you would buy, and why it matters more than raw visit count.</p>
         <div class="criteria">
-          <span>D1 retention ≥ 25%</span><span>1k+ daily players</span><span>Clean asset ownership</span>
-          <span>No stolen scripts</span><span>Group-owned place</span><span>90 days of analytics</span>
+          <span>PLACEHOLDER 01</span>
+          <span>PLACEHOLDER 02</span>
+          <span>PLACEHOLDER 03</span>
+          <span>PLACEHOLDER 04</span>
+          <span>PLACEHOLDER 05</span>
+          <span>PLACEHOLDER 06</span>
         </div>
       </div>
       <div class="offer reveal">
-        <p class="eyebrow eyebrow--plain" style="color:var(--brand)">Typical deal in 2026</p>
-        <span class="counter">18–30×</span>
-        <p style="color:color-mix(in srgb,var(--bg) 76%,transparent);font-size:.95rem">monthly net Robux revenue, paid in USD. Split as 70% on transfer and 30% over six months, or all up front at a discount. Your call.</p>
+        <p class="eyebrow eyebrow--plain" style="color:var(--brand)">PLACEHOLDER — deal label</p>
+        <span class="counter">PLACEHOLDER</span>
+        <p style="color:color-mix(in srgb,var(--bg) 76%,transparent);font-size:.95rem">PLACEHOLDER — the shape of a typical deal: what it is a multiple of, the currency, and how payment is split.</p>
       </div>
     </div>
     <ol class="steps">
-      <li class="reveal"><h3>Send analytics</h3><p>Screenshots of the last 90 days: visits, DAU, retention and revenue. That is enough for a first read.</p></li>
-      <li class="reveal"><h3>Thirty-minute call</h3><p>We play it together on a call, you walk us through the code and what you would have built next.</p></li>
-      <li class="reveal"><h3>Offer in 72 hours</h3><p>A written number with the reasoning behind it. No exploding deadlines, no pressure to sign on the call.</p></li>
-      <li class="reveal"><h3>Transfer and payout</h3><p>Group transfer, first payment same week, and a credit line on the game page that stays there.</p></li>
+      <li class="reveal"><h3>PLACEHOLDER — step title</h3><p>PLACEHOLDER — what happens at this step and what you need from the seller before the next one.</p></li>
+      <li class="reveal"><h3>PLACEHOLDER — step title</h3><p>PLACEHOLDER — what happens at this step and what you need from the seller before the next one.</p></li>
+      <li class="reveal"><h3>PLACEHOLDER — step title</h3><p>PLACEHOLDER — what happens at this step and what you need from the seller before the next one.</p></li>
+      <li class="reveal"><h3>PLACEHOLDER — step title</h3><p>PLACEHOLDER — what happens at this step and what you need from the seller before the next one.</p></li>
     </ol>
   </div>
 </section>
@@ -761,12 +766,12 @@ section{scroll-margin-top:84px}
     <div class="reveal">
       <p class="eyebrow">Get in touch</p>
       <h2 style="font-size:clamp(2rem,5vw,3rem);margin-top:10px">Pitch us<br>something.</h2>
-      <p style="color:var(--text-dim);margin-top:14px">Acquisitions, publishing, portfolios, press — same inbox, read every morning.</p>
+      <p style="color:var(--text-dim);margin-top:14px">PLACEHOLDER — who should write to you, and what they should send with it.</p>
       <dl class="deets">
         <div><dt>Business email</dt><dd><a href="#" data-bind="email">hello@overbuilt.gg</a></dd></div>
-        <div><dt>Response time</dt><dd>Within 48 hours, weekdays</dd></div>
-        <div><dt>Discord</dt><dd>Fastest route — ask in #studio-inbox</dd></div>
-        <div><dt>Studio</dt><dd>Remote, anchored in Manchester</dd></div>
+        <div><dt>Response time</dt><dd>PLACEHOLDER</dd></div>
+        <div><dt>Discord</dt><dd>PLACEHOLDER</dd></div>
+        <div><dt>Studio</dt><dd>PLACEHOLDER</dd></div>
       </dl>
     </div>
     <form class="card form reveal" id="contactForm" novalidate>
@@ -822,7 +827,7 @@ section{scroll-margin-top:84px}
     <div class="foot__grid">
       <div>
         <a class="mark" href="#top" style="font-size:1.35rem"><span class="mark__glyph"><i></i></span><span data-bind="name">OVERBUILT</span></a>
-        <p style="color:var(--text-dim);font-size:.92rem;margin-top:12px;max-width:34ch">Small rooms, loud worlds. Building on Roblox since 2019.</p>
+        <p style="color:var(--text-dim);font-size:.92rem;margin-top:12px;max-width:34ch">PLACEHOLDER — your studio in one line.</p>
         <div class="socials">
           <a href="#" data-bind="discord" aria-label="Discord"><svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.319 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.011c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.01c.12.099.246.198.373.292a.077.077 0 0 1-.007.128c-.598.349-1.22.65-1.873.891a.077.077 0 0 0-.04.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.029 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.029zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.095 2.157 2.42 0 1.332-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg></a>
           <a href="#" data-bind="x" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
@@ -850,7 +855,7 @@ section{scroll-margin-top:84px}
       </div>
     </div>
     <div class="legal">
-      <span>© 2026 Overbuilt Studio — a fictional studio used to demonstrate this template. All figures are sample data.</span>
+      <span>© PLACEHOLDER — replace with your studio name and year. Figures shown are sample data.</span>
       <span>Not affiliated with or endorsed by Roblox Corporation.</span>
     </div>
   </div>
@@ -863,10 +868,11 @@ section{scroll-margin-top:84px}
    Games API (games/v1/games?universeIds=…) inside refreshLive().
    ================================================================ */
 const STUDIO = {
-  name: "OVERBUILT",
-  email: "hello@overbuilt.gg",
-  members: 214880,
+  name: "PLACEHOLDER",            /* your studio name — shows in the nav and footer */
+  email: "PLACEHOLDER",           /* swap for a real address to activate the mailto link */
+  members: 214880,                /* Roblox group members */
   links: { group: "#", discord: "#", x: "#", roblox: "#" },
+  /* Sample catalogue — replace every entry with your own games. */
   games: [
     { name:"Rooftop Rivals", initials:"RR", genre:"PvP", status:"Flagship", blurb:"Round-based parkour duels across a city that keeps rebuilding itself between matches.", visits:41204880, live:612, favourites:486210, rating:94, c1:"#FF7A3D", c2:"#7A1FA2", pat:"rays" },
     { name:"Barnyard Tycoon", initials:"BT", genre:"Tycoon", status:"Live", blurb:"Build the farm, automate the chores, then defend the harvest from the neighbours.", visits:28915340, live:402, favourites:331904, rating:91, c1:"#F5C518", c2:"#2F7D46", pat:"stripes" },
@@ -905,7 +911,10 @@ $$("[data-bind]").forEach(el => {
   const k = el.dataset.bind;
   if (k === "name") el.textContent = STUDIO.name;
   if (k === "gameCount") el.textContent = STUDIO.games.length;
-  if (k === "email") { el.textContent = STUDIO.email; el.href = "mailto:" + STUDIO.email; }
+  if (k === "email") {
+    el.textContent = STUDIO.email;
+    el.href = STUDIO.email.includes("@") ? "mailto:" + STUDIO.email : "#";
+  }
   if (k === "groupLink") el.href = STUDIO.links.group;
   if (STUDIO.links[k]) el.href = STUDIO.links[k];
 });

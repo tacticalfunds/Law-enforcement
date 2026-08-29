@@ -4,8 +4,12 @@ A single-file, dependency-free marketing site for a Roblox game studio. Open
 `index.html` in a browser or drop it on any static host (GitHub Pages, Netlify,
 Cloudflare Pages) — there is no build step.
 
-`Overbuilt` is a fictional studio used to fill the template. Every figure on the
-page is sample data.
+Every line of studio-defining copy reads `PLACEHOLDER` with a short hint about
+what belongs there — studio name, tagline, values, build log, acquisition terms,
+process steps, contact details. Search the file for `PLACEHOLDER` to find all of
+them; there are 57. The sample game catalogue is left filled in so the grid,
+filters, ticker and stat tiles still demonstrate; replace those entries in the
+`STUDIO.games` array.
 
 ## What's on the page
 
@@ -40,8 +44,10 @@ const STUDIO = {
 };
 ```
 
-- **Games** — add or remove entries; the grid, genre filters, ticker, live board
-  and all four stat tiles recompute from the array.
+- **Games** — sample data. Add or remove entries; the grid, genre filters,
+  ticker, live board and all four stat tiles recompute from the array.
+- **Name and email** — `STUDIO.name` and `STUDIO.email` both read `PLACEHOLDER`.
+  The email becomes a working `mailto:` link as soon as it contains an `@`.
 - **Cover art** — generated in CSS from `c1`, `c2` and `pat`
   (`rays`, `stripes`, `grid`, `arcs`, `dots`, `bars`). To use real thumbnails,
   replace the `.cover` div in the grid template with an `<img>`.
@@ -72,4 +78,5 @@ Keyboard focus is visible throughout, the poll and filters are real buttons with
 animated — counters, reveals, ticker, the halftone background — stops under
 `prefers-reduced-motion: reduce`.
 
-Not affiliated with or endorsed by Roblox Corporation.
+Figures shown are sample data. Not affiliated with or endorsed by Roblox
+Corporation.

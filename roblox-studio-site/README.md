@@ -52,9 +52,11 @@ const STUDIO = {
   `maxPlayers` to `null` until you have the real figure.
 - **Name and links** — `STUDIO.name` and `STUDIO.links` drive the wordmark, the
   footer icons and every Discord link on the page.
-- **Cover art** — generated in CSS from `c1`, `c2` and `pat`
-  (`rays`, `stripes`, `grid`, `arcs`, `dots`, `bars`). To use real thumbnails,
-  replace the `.cover` div in the grid template with an `<img>`.
+- **Thumbnails** — give a game an `img` and the card shows that instead of the
+  generated art. External images are blocked, so thumbnails are inlined as data
+  URIs in the `THUMBS` object above `STUDIO`; export at 768x432 and paste one in.
+- **Cover art** — the fallback when a game has no `img`, generated in CSS from
+  `c1`, `c2` and `pat` (`rays`, `stripes`, `grid`, `arcs`, `dots`, `bars`).
 - **Colours** — one `:root` token block at the top of the stylesheet holds the
   whole palette: near-black ground, red signal, bone type. The page commits to
   this single world rather than following the viewer's light/dark setting, so

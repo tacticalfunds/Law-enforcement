@@ -19,7 +19,7 @@ lifetime visits, so the section's claim stays true as you add entries.
 | Hero | Studio pitch, two CTAs, and a live "playing right now" board |
 | Stats | Animated counters for visits, concurrents, experiences live, largest server |
 | Our games | Filterable catalogue with generated cover art, per-game metrics |
-| Acquisitions | What we look for, deal shape, and a three-step process for sellers |
+| Acquisitions | What we look for, and a three-step process for sellers |
 | Contact | Validated enquiry form with an inquiry-type selector |
 
 `CONTENT-BRIEF.md` next to this file lists every placeholder as a fill-in

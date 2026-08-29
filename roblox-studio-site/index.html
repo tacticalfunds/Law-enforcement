@@ -377,13 +377,9 @@ section{scroll-margin-top:84px}
 }
 .steps h3{font-size:1.05rem}
 .steps p{font-size:.87rem;color:var(--text-dim)}
-.acqgrid{display:grid;gap:34px;margin-bottom:40px}
-@media(min-width:900px){.acqgrid{grid-template-columns:1fr 1fr;gap:56px}}
-.offer{
-  border:2px solid var(--brand);border-radius:8px;padding:22px;
-  background:rgba(0,0,0,.3);
-  display:grid;gap:12px;
-}
+.acqlead{max-width:58ch;margin-bottom:40px}
+.acqlead h3{font-size:1.3rem;margin-bottom:12px}
+.acqlead p{color:var(--text-dim);font-size:.95rem}
 
 /* ---- contact ---- */
 .contact{display:grid;gap:34px}
@@ -628,15 +624,9 @@ section{scroll-margin-top:84px}
       </div>
       <a class="btn btn--solid" href="#contact">Start a conversation</a>
     </div>
-    <div class="acqgrid">
-      <div class="reveal">
-        <h3 style="font-size:1.3rem;margin-bottom:12px">What we look for</h3>
-        <p style="color:var(--text-dim);font-size:.95rem">We look for high quality games built by ambitious people. While retention plays an important role in our offers, it will not make or break the deal.</p>
-      </div>
-      <div class="offer reveal">
-        <p class="eyebrow eyebrow--plain" style="color:var(--brand)">How we pay</p>
-        <p style="color:var(--text-dim);font-size:.95rem">We pay against monthly net Robux revenue, converted at the DevEx rate on the day we sign. Half on transfer, half across the following six months — or the whole amount up front at a discount, your call.</p>
-      </div>
+    <div class="acqlead reveal">
+      <h3>What we look for</h3>
+      <p>We look for high quality games built by ambitious people. While retention plays an important role in our offers, it will not make or break the deal.</p>
     </div>
     <ol class="steps">
       <li class="reveal"><h3>We reach out to YOU</h3><p>One of our contractors or scouts will contact you and ask if you're interested in exploring a deal with us.</p></li>

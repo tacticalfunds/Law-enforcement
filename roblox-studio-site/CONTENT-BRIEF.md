@@ -3,8 +3,11 @@
 > **Status:** the drafted answers in `CONTENT-BRIEF-DRAFT.md` are now live on the
 > site. This file stays as the checklist — use it to correct anything I wrote.
 > Still genuinely blank: **2.1** business email and **2.6–2.8** the three URLs.
-> Still my invention and safest to replace: **3.3–3.4**, **3.10**, **3.11**, **4.2**.
-> The build log (5.7) has been cut from the page.
+> Still my invention and safest to replace: **3.10** and **3.11** (the deal figure
+> and terms) and **4.2** (Boxing Club's description).
+> Cut from the page: the build log, the six criteria chips, §2.2–2.5, and the
+> whole studio section (§5). Page now runs hero → stats → our games →
+> acquisitions → contact.
 
 Every blank below was a `PLACEHOLDER` on the site.
 
@@ -199,5 +202,5 @@ for players. Past updates only; upcoming events belong somewhere else.
 ## 6 · Anything else
 
 Sections you want cut, added, renamed, or reordered. The page currently runs:
-hero → stats → our games → acquisitions → studio → contact.
+hero → stats → our games → acquisitions → contact.
 > 

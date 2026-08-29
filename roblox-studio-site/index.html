@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Red Lab Studios — we buy Roblox games and keep them growing. Four experiences, 105 million visits.">
+<meta name="description" content="Red Lab Studios — we buy Roblox games and keep them growing.">
 <style>
   :root{color-scheme:dark}
   body{margin:0}
@@ -365,26 +365,6 @@ section{scroll-margin-top:84px}
   font-variant-numeric:tabular-nums;
 }
 
-/* ---- studio values ---- */
-.values{display:grid;gap:0;margin:0;padding:0;list-style:none}
-.values li{
-  display:grid;grid-template-columns:auto 1fr;gap:16px;
-  padding:18px 0;border-top:2px solid var(--edge-soft);
-}
-.values li:last-child{border-bottom:2px solid var(--edge-soft)}
-.values h3{font-size:1.08rem;margin-bottom:5px}
-.values p{font-size:.9rem;color:var(--text-dim)}
-.values .k{
-  font-family:"Martian Mono",monospace;font-size:.6rem;font-weight:600;
-  color:var(--hot);padding-top:4px;
-}
-/* two columns once there is room; one closing rule under the whole block
-   rather than a stray one under the last cell */
-@media(min-width:900px){
-  .values{grid-template-columns:1fr 1fr;column-gap:56px;border-bottom:2px solid var(--edge-soft)}
-  .values li:last-child{border-bottom:0}
-}
-
 /* ---- acquisitions ---- */
 .acq{
   background:
@@ -395,9 +375,10 @@ section{scroll-margin-top:84px}
 }
 .acq .eyebrow{color:var(--hot)}
 .acq .eyebrow::after{background:rgba(255,92,104,.3)}
-.steps{display:grid;gap:14px;margin:0;padding:0;list-style:none;counter-reset:s}
-@media(min-width:760px){.steps{grid-template-columns:repeat(2,1fr)}}
-@media(min-width:1100px){.steps{grid-template-columns:repeat(4,1fr)}}
+.steps{
+  display:grid;gap:14px;margin:0;padding:0;list-style:none;counter-reset:s;
+  grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));
+}
 .steps li{
   counter-increment:s;padding:20px 18px;border-radius:8px;
   border:2px solid var(--edge-soft);
@@ -411,13 +392,6 @@ section{scroll-margin-top:84px}
 }
 .steps h3{font-size:1.05rem}
 .steps p{font-size:.87rem;color:var(--text-dim)}
-.criteria{display:flex;flex-wrap:wrap;gap:9px;margin-top:8px}
-.criteria span{
-  font-family:"Martian Mono",monospace;font-size:.58rem;font-weight:600;
-  text-transform:uppercase;letter-spacing:.09em;
-  padding:7px 12px;border-radius:999px;
-  border:2px solid var(--edge-soft);
-}
 .acqgrid{display:grid;gap:34px;margin-bottom:40px}
 @media(min-width:900px){.acqgrid{grid-template-columns:1fr 1fr;gap:56px}}
 .offer{
@@ -599,7 +573,6 @@ section{scroll-margin-top:84px}
     <nav class="navlinks" aria-label="Primary">
       <a href="#games">Our games</a>
       <a href="#acquire">Acquisitions</a>
-      <a href="#studio">Studio</a>
       <a href="#contact">Contact</a>
     </nav>
     <span class="pill mono nav__meter"><i class="dot-live"></i><span data-bind="navVisits">0</span>&nbsp;visits</span>
@@ -610,7 +583,6 @@ section{scroll-margin-top:84px}
   <div class="drawer wrap" id="drawer" hidden>
     <a href="#games">Our games</a>
     <a href="#acquire">Acquisitions</a>
-    <a href="#studio">Studio</a>
     <a href="#contact">Contact</a>
   </div>
 </header>
@@ -622,7 +594,7 @@ section{scroll-margin-top:84px}
     <div>
       <p class="eyebrow eyebrow--plain"><span>Roblox publisher · est. 2025 · <span data-bind="gameCount">0</span> live experiences</span></p>
       <h1>Games that<br><span class="out">KEEP</span> <em>climbing.</em></h1>
-      <p class="hero__sub">We buy Roblox experiences and run them properly — new content on a schedule, moderation that actually works, and economies tuned so players come back on day seven. Four games, 105 million visits, a few hundred people in them right now. If you built something good and ran out of time for it, we should talk.</p>
+      <p class="hero__sub">We buy Roblox experiences and run them properly — new content on a schedule, moderation that actually works, and economies tuned so players come back on day seven. If you built something good and ran out of time for it, we should talk.</p>
       <div class="hero__cta">
         <a class="btn btn--solid" href="#games">See the games</a>
         <a class="btn" href="#acquire">Sell us your game</a>
@@ -648,7 +620,6 @@ section{scroll-margin-top:84px}
       <h2 style="font-size:clamp(1.6rem,4vw,2.4rem);margin-top:6px">Players have spent</h2>
       <span class="counter" data-count="totalVisits">0</span>
       <h2 style="font-size:clamp(1.6rem,4vw,2.4rem)">visits inside our worlds.</h2>
-      <p>Every number on this page is pulled from one array in the source. Point it at the Roblox Games API and it goes live.</p>
     </div>
     <div class="statgrid">
       <div class="card stat reveal"><span class="stat__l">Total visits</span><span class="stat__n" data-count="totalVisits">0</span><span class="stat__note">Across all published places</span></div>
@@ -690,15 +661,7 @@ section{scroll-margin-top:84px}
     <div class="acqgrid">
       <div class="reveal">
         <h3 style="font-size:1.3rem;margin-bottom:12px">What we look for</h3>
-        <p style="color:var(--text-dim);font-size:.95rem">Retention, not raw visits. A game forty thousand people keep reopening on day seven is worth more to us than one four million people tried once. Send the curve and we'll know inside a day.</p>
-        <div class="criteria">
-          <span>D1 retention ≥ 25%</span>
-          <span>500+ daily players</span>
-          <span>Clean asset ownership</span>
-          <span>No stolen scripts</span>
-          <span>Group-owned place</span>
-          <span>90 days of analytics</span>
-        </div>
+        <p style="color:var(--text-dim);font-size:.95rem">We look for high quality games built by ambitious people. While retention plays an important role in our offers, it will not make or break the deal.</p>
       </div>
       <div class="offer reveal">
         <p class="eyebrow eyebrow--plain" style="color:var(--brand)">Typical deal in 2026</p>
@@ -707,46 +670,21 @@ section{scroll-margin-top:84px}
       </div>
     </div>
     <ol class="steps">
-      <li class="reveal"><h3>Send your numbers</h3><p>Ninety days of visits, daily players, retention and revenue. Dashboard screenshots are enough for a first read.</p></li>
-      <li class="reveal"><h3>We play it together</h3><p>Half an hour on a call, inside the game, with you walking us through what you would have built next.</p></li>
-      <li class="reveal"><h3>Offer in 72 hours</h3><p>A written number with the reasoning attached. No deadline on it and no pressure to answer during the call.</p></li>
-      <li class="reveal"><h3>Transfer and payout</h3><p>Group transfer, first payment the same week, and your credit stays on the game page permanently.</p></li>
+      <li class="reveal"><h3>We reach out to YOU</h3><p>One of our contractors or scouts will contact you and ask if you're interested in exploring a deal with us.</p></li>
+      <li class="reveal"><h3>We review your numbers</h3><p>We review your game's stats, retention, and revenue to pitch a fair price to you.</p></li>
+      <li class="reveal"><h3>We finalize the deal</h3><p>We finalize the deal, and successfully purchase the revenue share or experience from you.</p></li>
     </ol>
   </div>
 </section>
 
-<!-- ============================ STUDIO ============================ -->
-<section class="band" id="studio">
-  <div class="wrap">
-    <div class="sechead reveal">
-      <div>
-        <p class="eyebrow">Who we are</p>
-        <h2>Four games, one operations team</h2>
-        <p>We are small on purpose. Everything runs off one backlog and one weekly playtest, and the people who read your reports are the people who ship the fix.</p>
-      </div>
-    </div>
-      <ul class="values reveal">
-        <li><span class="k">01</span><div><h3>Ship every week</h3><p>Every game gets a real update weekly. Not a re-skin, not a sale — something players feel in the first minute.</p></div></li>
-        <li><span class="k">02</span><div><h3>The creator keeps the credit</h3><p>When we take a game over, whoever built it stays named on the page. That does not expire when the handover does.</p></div></li>
-        <li><span class="k">03</span><div><h3>Monetise the fun, not the wall</h3><p>No pay-to-progress, no timers you can only skip with Robux. Cosmetics, passes and events — the things players show off.</p></div></li>
-        <li><span class="k">04</span><div><h3>Moderation is a feature</h3><p>Filters, a report queue we actually clear, and people reading it. Parents notice. So does Roblox.</p></div></li>
-      </ul>
-  </div>
-</section>
-
-<hr class="rule">
 <!-- ============================ CONTACT ============================ -->
 <section class="band" id="contact">
   <div class="wrap contact">
     <div class="reveal">
       <p class="eyebrow">Get in touch</p>
-      <h2 style="font-size:clamp(2rem,5vw,3rem);margin-top:10px">Pitch us<br>something.</h2>
-      <p style="color:var(--text-dim);margin-top:14px">Selling a game, pitching a partnership, or looking for work — same inbox, read every morning.</p>
+      <h2 style="font-size:clamp(2rem,5vw,3rem);margin-top:10px">Talk to us.</h2>
       <dl class="deets">
         <div><dt>Business email</dt><dd><a href="#" data-bind="email">hello@overbuilt.gg</a></dd></div>
-        <div><dt>Response time</dt><dd>Within 48 hours, weekdays</dd></div>
-        <div><dt>Discord</dt><dd>Fastest route — open a ticket in #business</dd></div>
-        <div><dt>Studio</dt><dd>Remote</dd></div>
       </dl>
     </div>
     <form class="card form reveal" id="contactForm" novalidate>
@@ -814,7 +752,6 @@ section{scroll-margin-top:84px}
         <ul>
           <li><a href="#games">Our games</a></li>
           <li><a href="#acquire">Game acquisitions</a></li>
-          <li><a href="#studio">Studio</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -823,7 +760,7 @@ section{scroll-margin-top:84px}
         <ul>
           <li><a href="#acquire">Sell your game</a></li>
           <li><a href="#contact">Work with us</a></li>
-          <li><a href="#acquire">Acquisition criteria</a></li>
+          <li><a href="#acquire">How it works</a></li>
           <li><a href="#contact">Press kit</a></li>
         </ul>
       </div>
@@ -1068,7 +1005,7 @@ const spy = new IntersectionObserver(entries => {
       a.classList.toggle("is-on", a.getAttribute("href") === "#" + e.target.id));
   });
 }, { rootMargin: "-45% 0px -50% 0px" });
-["games", "acquire", "studio", "contact"].forEach(id => {
+["games", "acquire", "contact"].forEach(id => {
   const el = document.getElementById(id); if (el) spy.observe(el);
 });
 

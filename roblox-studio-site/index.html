@@ -371,7 +371,6 @@ section{scroll-margin-top:84px}
     radial-gradient(130% 85% at 28% 0%,rgba(216,18,31,.22),transparent 60%),
     radial-gradient(110% 70% at 78% 0%,rgba(123,92,255,.15),transparent 62%),
     #150507;
-  position:relative;
 }
 .acq .eyebrow{color:var(--hot)}
 .acq .eyebrow::after{background:rgba(255,92,104,.3)}
@@ -539,13 +538,6 @@ section{scroll-margin-top:84px}
   mix-blend-mode:overlay;opacity:.5;
   animation:holoDrift 7s linear infinite;
 }
-.acq::before,.acq::after{
-  content:"";position:absolute;left:0;right:0;height:2px;
-  background-image:var(--holo);background-size:200% 100%;
-  animation:holoDrift 9s linear infinite;
-}
-.acq::before{top:0}
-.acq::after{bottom:0}
 
 /* specular sweep across the solid buttons */
 .btn--solid,.btn--hot{position:relative;overflow:hidden}
@@ -664,9 +656,8 @@ section{scroll-margin-top:84px}
         <p style="color:var(--text-dim);font-size:.95rem">We look for high quality games built by ambitious people. While retention plays an important role in our offers, it will not make or break the deal.</p>
       </div>
       <div class="offer reveal">
-        <p class="eyebrow eyebrow--plain" style="color:var(--brand)">Typical deal in 2026</p>
-        <span class="counter">18–30×</span>
-        <p style="color:var(--text-dim);font-size:.95rem">monthly net Robux revenue, converted at the DevEx rate on the day we sign. Half on transfer, half across the following six months — or the whole amount up front at a discount, your call.</p>
+        <p class="eyebrow eyebrow--plain" style="color:var(--brand)">How we pay</p>
+        <p style="color:var(--text-dim);font-size:.95rem">We pay against monthly net Robux revenue, converted at the DevEx rate on the day we sign. Half on transfer, half across the following six months — or the whole amount up front at a discount, your call.</p>
       </div>
     </div>
     <ol class="steps">

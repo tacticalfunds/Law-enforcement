@@ -3,8 +3,8 @@
 > **Status:** the drafted answers in `CONTENT-BRIEF-DRAFT.md` are now live on the
 > site. This file stays as the checklist — use it to correct anything I wrote.
 > Still genuinely blank: **2.1** business email and **2.6–2.8** the three URLs.
-> Still my invention and safest to replace: **3.10** and **3.11** (the deal figure
-> and terms) and **4.2** (Boxing Club's description).
+> Still my invention and safest to replace: **3.11** (the payment terms) and
+> **4.2** (Boxing Club's description). The deal figure has been removed.
 > Cut from the page: the build log, the six criteria chips, §2.2–2.5, and the
 > whole studio section (§5). Page now runs hero → stats → our games →
 > acquisitions → contact.

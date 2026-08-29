@@ -944,29 +944,28 @@ const STUDIO = {
       visits:34910, live:15, maxPlayers:12,
       c1:"#0C0203", c2:"#8E0B16", pat:"grid"
     },
-    /* Title below is taken from the URL slug — confirm the exact store name.
-       null on any number means "not supplied yet"; the card shows an em dash
-       and the totals skip it, so nothing here is guessed. */
+    /* null on any number means "not supplied yet": the card shows an em dash
+       and the totals skip it, so nothing here is ever a guess. */
     {
-      name:"1 Warrior Evolution", initials:"WE", genre:"Simulator", status:"Live",
-      creator:"PLACEHOLDER",
+      name:"+1 Warrior Evolution", initials:"WE", genre:"Simulator", status:"Live",
+      creator:"Red Lab Studios",
       url:"https://www.roblox.com/games/135599054283342/1-Warrior-Evolution",
-      blurb:"PLACEHOLDER — one line on what players do in this one.",
-      visits:null, live:null, maxPlayers:null,
+      blurb:"Train your strength and become the strongest warrior. Explore new worlds, defeat powerful enemies, collect pets and climb the leaderboards.",
+      visits:350000, live:67, maxPlayers:12,
       c1:"#1A0407", c2:"#FF2E3F", pat:"rays"
     },
     {
-      name:"Boxing Club", initials:"BC", genre:"Fighting", status:"Live",
-      creator:"PLACEHOLDER",
+      name:"Boxing Club", initials:"BC", genre:"Fighting", status:"Update",
+      creator:"Boxing Club! (Offical)",
       url:"https://www.roblox.com/games/128363930903729/Boxing-Club",
       blurb:"PLACEHOLDER — one line on what players do in this one.",
-      visits:null, live:null, maxPlayers:null,
+      visits:817000, live:227, maxPlayers:24,
       c1:"#120306", c2:"#B00E1C", pat:"stripes"
     }
   ],
   /* Spotlight tallies. Votes are per-browser, so these start at zero —
      seed them from your own counter if you run one. */
-  poll: { "Paint And SEEK!":0, "Monkeys VS Walls":0, "1 Warrior Evolution":0, "Boxing Club":0 }
+  poll: { "Paint And SEEK!":0, "Monkeys VS Walls":0, "+1 Warrior Evolution":0, "Boxing Club":0 }
 };
 
 /* ================================================================
@@ -1006,7 +1005,10 @@ $$("[data-bind]").forEach(el => {
    3. Games grid + genre filter
    ================================================================ */
 const grid = $("#gameGrid");
-grid.innerHTML = STUDIO.games.map(g => `
+/* the section promises "sorted by lifetime visits", so sort rather than
+   relying on the array order; games without a figure yet go last */
+const byVisits = [...STUDIO.games].sort((a, b) => (b.visits ?? -1) - (a.visits ?? -1));
+grid.innerHTML = byVisits.map(g => `
   <article class="card game reveal" data-genre="${g.genre}">
     <div class="cover" data-pat="${g.pat}" style="--c1:${g.c1};--c2:${g.c2}" role="img" aria-label="${g.name} cover art">
       <span class="cover__mono">${g.initials}</span>
@@ -1066,7 +1068,7 @@ function refreshLive(){
 
 (() => {
   const strip = $("#ticker");
-  const run = STUDIO.games
+  const run = byVisits
     .filter(g => g.visits != null)
     .map(g => `<span>${g.name} — ${compact(g.visits)} visits</span>`).join("");
   if (!run) return;

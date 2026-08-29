@@ -7,9 +7,10 @@ Cloudflare Pages) — there is no build step.
 Every line of studio-defining copy reads `PLACEHOLDER` with a short hint about
 what belongs there — studio name, tagline, values, build log, acquisition terms,
 process steps, contact details. Search the file for `PLACEHOLDER` to find all of
-them; there are 61. The `STUDIO.games` array holds four real games — where a
+them; there are 58. The `STUDIO.games` array holds four real games — where a
 number has not been supplied yet it is `null`, so the card renders an em dash
-and the totals skip it. Nothing on the page is a guess.
+and the totals skip it. Nothing on the page is a guess. The grid sorts itself by
+lifetime visits, so the section's claim stays true as you add entries.
 
 ## What's on the page
 

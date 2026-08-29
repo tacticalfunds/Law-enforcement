@@ -7,9 +7,9 @@ Cloudflare Pages) — there is no build step.
 Every line of studio-defining copy reads `PLACEHOLDER` with a short hint about
 what belongs there — studio name, tagline, values, build log, acquisition terms,
 process steps, contact details. Search the file for `PLACEHOLDER` to find all of
-them; there are 57. The sample game catalogue is left filled in so the grid,
-filters, ticker and stat tiles still demonstrate; replace those entries in the
-`STUDIO.games` array.
+them; there are 61. The `STUDIO.games` array holds four real games — where a
+number has not been supplied yet it is `null`, so the card renders an em dash
+and the totals skip it. Nothing on the page is a guess.
 
 ## What's on the page
 
@@ -17,7 +17,7 @@ filters, ticker and stat tiles still demonstrate; replace those entries in the
 | --- | --- |
 | Hero | Studio pitch, two CTAs, and a live "playing right now" board |
 | Ticker | Scrolling marquee of every game and its lifetime visits |
-| Stats | Animated counters for visits, concurrents, favourites, group members |
+| Stats | Animated counters for visits, concurrents, experiences live, largest server |
 | Our games | Filterable catalogue with generated cover art, per-game metrics |
 | Spotlight vote | Community poll with live bars, a reset countdown, one vote per browser |
 | Studio | Values and a dated build log |
@@ -31,21 +31,24 @@ block:
 
 ```js
 const STUDIO = {
-  name: "OVERBUILT",
-  email: "hello@overbuilt.gg",
-  members: 214880,
+  name: "PLACEHOLDER",
+  email: "PLACEHOLDER",
   links: { group: "…", discord: "…", x: "…", roblox: "…" },
   games: [
-    { name:"Rooftop Rivals", initials:"RR", genre:"PvP", status:"Flagship",
-      blurb:"…", visits:41204880, live:612, favourites:486210, rating:94,
-      c1:"#FF7A3D", c2:"#7A1FA2", pat:"rays" }
+    { name:"Paint And SEEK!", initials:"PS", genre:"Hide & seek", status:"Live",
+      creator:"Blend In Or Die",
+      url:"https://www.roblox.com/games/78724049937437/Paint-And-SEEK",
+      blurb:"…", visits:104569069, live:281, maxPlayers:14,
+      c1:"#160305", c2:"#D3121F", pat:"dots" }
   ],
-  poll: { "Rooftop Rivals":412, … }
+  poll: { "Paint And SEEK!":0, … }
 };
 ```
 
-- **Games** — sample data. Add or remove entries; the grid, genre filters,
-  ticker, live board and all four stat tiles recompute from the array.
+- **Games** — add or remove entries; the grid, genre filters, ticker, live
+  board and all four stat tiles recompute from the array. The grid uses
+  `auto-fit`, so any number of cards fills the row. Set `visits`, `live` or
+  `maxPlayers` to `null` until you have the real figure.
 - **Name and email** — `STUDIO.name` and `STUDIO.email` both read `PLACEHOLDER`.
   The email becomes a working `mailto:` link as soon as it contains an `@`.
 - **Cover art** — generated in CSS from `c1`, `c2` and `pat`
@@ -58,6 +61,13 @@ const STUDIO = {
   Change `--brand` and `--hot` together to move off red.
 - **Type** — Archivo 800 for display, Karla for body, Martian Mono for anything
   numeric. All three come from Google Fonts with real fallback stacks.
+- **Holographic layer** — `--holo` is one oil-slick gradient reused everywhere:
+  display type, the logo mark, card rims, cover sheens, the ticker and the
+  acquisitions rules. JS writes the pointer position into `--mx` / `--my`, which
+  those gradients read as their background position, so the foil tilts as you
+  move across the page; touch devices get a slow drift instead. The ambient
+  canvas paints the same spectrum — dot size and hue both track one wave, giving
+  a diffraction pattern rather than a flat halftone.
 
 ## Wiring up the live parts
 

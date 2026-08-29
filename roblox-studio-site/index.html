@@ -1,0 +1,1159 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Overbuilt — a Roblox game studio website template: live stats, game catalogue, spotlight vote, acquisitions pitch and contact form.">
+<style>
+  :root{color-scheme:light}
+  body{margin:0}
+  img{max-width:100%}
+  [hidden]{display:none!important}
+</style>
+</head>
+<body>
+<title>Overbuilt Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Karla:ital,wght@0,400;0,500;0,700;1,400&family=Martian+Mono:wght@400;600&display=swap">
+<style>
+/* ============================================================
+   OVERBUILT — Roblox game studio site template
+   Swap the STUDIO object at the top of the script for your own
+   studio, games and links. Everything else derives from it.
+   ============================================================ */
+
+/* ---- tokens: light (bone poster) ---- */
+:root{
+  --bg:#F4EEE4;
+  --surface:#FBF7F0;
+  --surface-alt:#E9DFD0;
+  --text:#1B1020;
+  --text-dim:#5F5069;
+  --text-faint:#8B7C94;
+  --edge:#1B1020;
+  --edge-soft:rgba(27,16,32,.16);
+  --brand:#F5A310;          /* fill only — always carries --on-brand text */
+  --on-brand:#1B1020;
+  --hot:#C8214F;            /* accent text + emphasis */
+  --hot-soft:rgba(200,33,79,.10);
+  --live:#0E8A63;
+  --lift:#1B1020;           /* hard offset shadow */
+  --dot:rgba(27,16,32,.13);
+  --field:#FFFFFF;
+  --scrim:rgba(244,238,228,.86);
+  color-scheme:light;
+}
+/* ---- tokens: dark (arcade ink) ---- */
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --bg:#150C1B;
+    --surface:#1F1329;
+    --surface-alt:#2A1A38;
+    --text:#F4EEE4;
+    --text-dim:#B7A5C2;
+    --text-faint:#8B7B96;
+    --edge:#EFE6DA;
+    --edge-soft:rgba(239,230,218,.18);
+    --brand:#FFB224;
+    --on-brand:#1B1020;
+    --hot:#FF7A9C;
+    --hot-soft:rgba(255,122,156,.12);
+    --live:#45E3AC;
+    --lift:#08040D;
+    --dot:rgba(244,238,228,.11);
+    --field:#170E1F;
+    --scrim:rgba(21,12,27,.86);
+    color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#150C1B;
+  --surface:#1F1329;
+  --surface-alt:#2A1A38;
+  --text:#F4EEE4;
+  --text-dim:#B7A5C2;
+  --text-faint:#8B7B96;
+  --edge:#EFE6DA;
+  --edge-soft:rgba(239,230,218,.18);
+  --brand:#FFB224;
+  --on-brand:#1B1020;
+  --hot:#FF7A9C;
+  --hot-soft:rgba(255,122,156,.12);
+  --live:#45E3AC;
+  --lift:#08040D;
+  --dot:rgba(244,238,228,.11);
+  --field:#170E1F;
+  --scrim:rgba(21,12,27,.86);
+  color-scheme:dark;
+}
+
+*,*::before,*::after{box-sizing:border-box}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:"Karla","Helvetica Neue",Arial,sans-serif;
+  font-size:17px;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+  overflow-x:hidden;
+}
+h1,h2,h3,h4{
+  font-family:"Syne","Trebuchet MS",Verdana,sans-serif;
+  font-weight:800;
+  line-height:.98;
+  letter-spacing:-.02em;
+  text-wrap:balance;
+  margin:0;
+}
+p{margin:0}
+a{color:inherit}
+img{max-width:100%}
+::selection{background:var(--brand);color:var(--on-brand)}
+:focus-visible{outline:3px solid var(--hot);outline-offset:3px;border-radius:2px}
+
+/* ---- ambient halftone field ---- */
+#field{
+  position:fixed;inset:0;width:100%;height:100%;
+  z-index:-1;pointer-events:none;
+}
+
+/* ---- primitives ---- */
+.wrap{width:100%;max-width:1200px;margin-inline:auto;padding-inline:20px}
+@media(min-width:760px){.wrap{padding-inline:32px}}
+
+.eyebrow{
+  font-family:"Martian Mono",ui-monospace,monospace;
+  font-size:.6rem;font-weight:600;text-transform:uppercase;
+  letter-spacing:.14em;color:var(--text-faint);
+  display:flex;align-items:center;gap:10px;margin:0;
+}
+.eyebrow::after{content:"";flex:1;height:2px;background:var(--edge-soft)}
+.eyebrow--plain::after{display:none}
+
+.mono{font-family:"Martian Mono",ui-monospace,monospace;font-variant-numeric:tabular-nums}
+
+.btn{
+  display:inline-flex;align-items:center;gap:.5em;
+  font-family:"Syne",sans-serif;font-weight:800;font-size:.95rem;
+  letter-spacing:-.01em;
+  padding:13px 22px;border-radius:999px;
+  border:2px solid var(--edge);
+  background:var(--surface);color:var(--text);
+  text-decoration:none;cursor:pointer;
+  box-shadow:4px 4px 0 var(--lift);
+  transition:transform .14s ease,box-shadow .14s ease,background .14s ease;
+}
+.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--lift)}
+.btn:active{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--lift)}
+.btn--solid{background:var(--brand);color:var(--on-brand);border-color:var(--edge)}
+.btn--hot{background:var(--hot);color:var(--bg);border-color:var(--edge)}
+.btn--sm{padding:9px 16px;font-size:.85rem;box-shadow:3px 3px 0 var(--lift)}
+
+.card{
+  background:var(--surface);
+  border:2px solid var(--edge);
+  border-radius:8px;
+  box-shadow:5px 5px 0 var(--lift);
+}
+
+.pill{
+  display:inline-flex;align-items:center;gap:7px;
+  font-family:"Martian Mono",ui-monospace,monospace;
+  font-size:.6rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;
+  padding:6px 12px;border-radius:999px;
+  border:2px solid var(--edge-soft);background:var(--surface);
+}
+.dot-live{
+  width:7px;height:7px;border-radius:50%;background:var(--live);
+  box-shadow:0 0 0 0 var(--live);animation:ping 2.4s ease-out infinite;
+}
+@keyframes ping{
+  0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--live) 60%,transparent)}
+  70%,100%{box-shadow:0 0 0 8px transparent}
+}
+
+section{scroll-margin-top:84px}
+.band{padding:76px 0}
+@media(min-width:760px){.band{padding:110px 0}}
+.rule{height:2px;background:var(--edge);opacity:.9;border:0;margin:0}
+
+/* ---- nav ---- */
+.nav{
+  position:sticky;top:0;z-index:60;
+  background:var(--scrim);backdrop-filter:blur(14px);
+  border-bottom:2px solid var(--edge);
+}
+.nav__in{
+  display:flex;align-items:center;gap:16px;
+  height:64px;
+}
+.mark{
+  font-family:"Syne",sans-serif;font-weight:800;font-size:1.2rem;
+  letter-spacing:.02em;text-decoration:none;display:flex;align-items:center;gap:9px;
+  margin-right:auto;
+}
+.mark__glyph{
+  width:26px;height:26px;border:2px solid var(--edge);border-radius:5px;
+  background:var(--brand);display:grid;place-items:center;
+  box-shadow:2px 2px 0 var(--lift);flex:none;
+}
+.mark__glyph i{display:block;width:8px;height:8px;background:var(--on-brand);border-radius:1px;transform:rotate(45deg)}
+.navlinks{display:none;gap:22px;align-items:center}
+@media(min-width:940px){.navlinks{display:flex}}
+.navlinks a{
+  font-family:"Martian Mono",ui-monospace,monospace;
+  font-size:.62rem;font-weight:600;text-transform:uppercase;letter-spacing:.1em;
+  text-decoration:none;color:var(--text-dim);padding:4px 0;
+  border-bottom:2px solid transparent;transition:color .15s,border-color .15s;
+}
+.navlinks a:hover,.navlinks a.is-on{color:var(--text);border-bottom-color:var(--brand)}
+.nav__meter{display:none}
+@media(min-width:1080px){.nav__meter{display:inline-flex}}
+.iconbtn{
+  width:38px;height:38px;flex:none;display:grid;place-items:center;
+  border:2px solid var(--edge);border-radius:8px;background:var(--surface);
+  color:var(--text);cursor:pointer;box-shadow:2px 2px 0 var(--lift);
+}
+.iconbtn:hover{background:var(--surface-alt)}
+@media(min-width:940px){.menu{display:none}}
+.drawer{
+  border-bottom:2px solid var(--edge);background:var(--surface);
+  padding:14px 0 22px;
+}
+.drawer a{
+  display:block;padding:11px 0;text-decoration:none;
+  font-family:"Syne",sans-serif;font-weight:800;font-size:1.35rem;
+  border-bottom:1px solid var(--edge-soft);
+}
+@media(min-width:940px){.drawer{display:none!important}}
+
+/* ---- hero ---- */
+.hero{padding:56px 0 28px;position:relative}
+@media(min-width:760px){.hero{padding:88px 0 40px}}
+.hero__grid{display:grid;gap:40px}
+@media(min-width:1000px){.hero__grid{grid-template-columns:1.35fr .85fr;gap:56px;align-items:end}}
+.hero h1{
+  font-size:clamp(2.9rem,9.2vw,6rem);
+  margin:18px 0 0;
+}
+.hero h1 em{font-style:normal;color:var(--hot);display:block}
+.hero h1 .out{
+  -webkit-text-stroke:2px var(--edge);
+  color:transparent;
+}
+.hero__sub{
+  margin-top:22px;max-width:46ch;font-size:1.06rem;color:var(--text-dim);
+}
+.hero__cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:28px}
+
+.nowcard{padding:20px;display:grid;gap:14px}
+.nowcard__head{display:flex;justify-content:space-between;align-items:center;gap:12px}
+.nowlist{display:grid;gap:2px;margin:0;padding:0;list-style:none}
+.nowlist li{
+  display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;
+  padding:9px 0;border-bottom:1px solid var(--edge-soft);
+}
+.nowlist li:last-child{border-bottom:0}
+.nowlist b{font-weight:700;font-size:.95rem}
+.nowlist span{font-family:"Martian Mono",monospace;font-size:.72rem;color:var(--live);font-variant-numeric:tabular-nums}
+
+/* ---- ticker ---- */
+.ticker{
+  border-block:2px solid var(--edge);background:var(--brand);color:var(--on-brand);
+  overflow:hidden;padding:11px 0;margin-top:44px;
+}
+.ticker__track{display:flex;width:max-content;animation:slide 42s linear infinite}
+.ticker:hover .ticker__track{animation-play-state:paused}
+.ticker span{
+  font-family:"Martian Mono",monospace;font-size:.66rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.12em;padding-inline:18px;white-space:nowrap;
+}
+.ticker span::after{content:"◆";margin-left:18px;opacity:.5}
+@keyframes slide{to{transform:translateX(-50%)}}
+
+/* ---- stats ---- */
+.counter{
+  font-family:"Martian Mono",monospace;font-weight:600;
+  font-size:clamp(1.9rem,7.4vw,3.4rem);
+  letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums;
+  color:var(--hot);
+}
+.statgrid{display:grid;gap:14px;margin-top:26px}
+@media(min-width:640px){.statgrid{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1000px){.statgrid{grid-template-columns:repeat(4,1fr)}}
+.stat{padding:18px 18px 20px;display:grid;gap:6px}
+.stat__n{
+  font-family:"Martian Mono",monospace;font-weight:600;font-size:1.7rem;
+  line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.03em;
+}
+.stat__l{
+  font-family:"Martian Mono",monospace;font-size:.58rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.12em;color:var(--text-faint);
+}
+.stat__note{font-size:.82rem;color:var(--text-dim);margin-top:2px}
+.headline-num{display:grid;gap:10px;max-width:760px}
+.headline-num p{color:var(--text-dim);max-width:44ch}
+
+/* ---- section heads ---- */
+.sechead{display:grid;gap:16px;margin-bottom:34px}
+@media(min-width:900px){
+  .sechead{grid-template-columns:1fr auto;align-items:end;gap:28px}
+}
+.sechead>a{justify-self:start}
+@media(min-width:900px){.sechead>a{justify-self:end}}
+.sechead h2{font-size:clamp(2rem,5vw,3.2rem)}
+.sechead p{color:var(--text-dim);max-width:52ch;margin-top:10px}
+
+/* ---- games ---- */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:22px}
+.chip{
+  font-family:"Martian Mono",monospace;font-size:.6rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.1em;
+  padding:8px 14px;border-radius:999px;cursor:pointer;
+  border:2px solid var(--edge-soft);background:transparent;color:var(--text-dim);
+  transition:background .15s,color .15s,border-color .15s;
+}
+.chip:hover{border-color:var(--edge);color:var(--text)}
+.chip[aria-pressed="true"]{background:var(--text);color:var(--bg);border-color:var(--text)}
+
+.games{display:grid;gap:18px}
+@media(min-width:640px){.games{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1040px){.games{grid-template-columns:repeat(3,1fr)}}
+.game{
+  overflow:hidden;display:flex;flex-direction:column;
+  transition:transform .16s ease,box-shadow .16s ease;
+}
+.game:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--lift)}
+.game.is-hidden{display:none}
+
+/* generated cover art — replace with <img> if you have real thumbnails */
+.cover{
+  aspect-ratio:16/10;position:relative;
+  border-bottom:2px solid var(--edge);
+  background:linear-gradient(150deg,var(--c1),var(--c2));
+  display:grid;place-items:center;overflow:hidden;
+}
+.cover::before{content:"";position:absolute;inset:0;opacity:.55}
+.cover[data-pat="rays"]::before{
+  background:repeating-conic-gradient(from 0deg at 50% 118%,rgba(255,255,255,.34) 0deg 7deg,transparent 7deg 14deg);
+}
+.cover[data-pat="stripes"]::before{
+  background:repeating-linear-gradient(48deg,rgba(255,255,255,.3) 0 14px,transparent 14px 30px);
+}
+.cover[data-pat="grid"]::before{
+  background:
+    repeating-linear-gradient(0deg,rgba(255,255,255,.26) 0 2px,transparent 2px 26px),
+    repeating-linear-gradient(90deg,rgba(255,255,255,.26) 0 2px,transparent 2px 26px);
+}
+.cover[data-pat="arcs"]::before{
+  background:repeating-radial-gradient(circle at 22% 108%,rgba(255,255,255,.32) 0 2px,transparent 2px 26px);
+}
+.cover[data-pat="dots"]::before{
+  background:radial-gradient(circle at center,rgba(255,255,255,.4) 2.5px,transparent 3px) 0 0/22px 22px;
+}
+.cover[data-pat="bars"]::before{
+  background:repeating-linear-gradient(90deg,rgba(0,0,0,.18) 0 18px,transparent 18px 46px);
+}
+.cover__mono{
+  position:relative;font-family:"Syne",sans-serif;font-weight:800;
+  font-size:clamp(2.6rem,9vw,3.6rem);letter-spacing:-.05em;line-height:1;
+  color:#FFF8EC;text-shadow:3px 3px 0 rgba(24,12,30,.55);
+}
+.cover__tag{
+  position:absolute;left:12px;bottom:12px;z-index:2;
+  font-family:"Martian Mono",monospace;font-size:.55rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.1em;
+  background:#1B1020;color:#F4EEE4;padding:5px 9px;border-radius:999px;
+}
+.cover__status{
+  position:absolute;right:12px;top:12px;z-index:2;
+  font-family:"Martian Mono",monospace;font-size:.55rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.1em;
+  background:#FFF8EC;color:#1B1020;padding:5px 9px;border-radius:999px;
+  border:2px solid #1B1020;
+}
+.game__body{padding:16px 16px 18px;display:grid;gap:10px;flex:1}
+.game__body h3{font-size:1.28rem}
+.game__body>p{font-size:.9rem;color:var(--text-dim)}
+.game__meta{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  border-top:1px solid var(--edge-soft);padding-top:12px;margin-top:auto;
+}
+.game__meta div{display:grid;gap:3px}
+.game__meta dt{
+  font-family:"Martian Mono",monospace;font-size:.5rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--text-faint);
+}
+.game__meta dd{
+  margin:0;font-family:"Martian Mono",monospace;font-size:.78rem;
+  font-variant-numeric:tabular-nums;
+}
+
+/* ---- vote ---- */
+.vote{display:grid;gap:24px;padding:24px}
+@media(min-width:900px){.vote{grid-template-columns:.9fr 1.1fr;gap:44px;padding:34px}}
+.clock{
+  display:inline-flex;gap:8px;margin-top:16px;
+}
+.clock div{
+  min-width:56px;padding:8px 6px;text-align:center;
+  border:2px solid var(--edge-soft);border-radius:6px;background:var(--bg);
+}
+.clock b{
+  display:block;font-family:"Martian Mono",monospace;font-size:1.05rem;
+  font-variant-numeric:tabular-nums;line-height:1.2;
+}
+.clock small{
+  font-family:"Martian Mono",monospace;font-size:.48rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.1em;color:var(--text-faint);
+}
+.polls{display:grid;gap:10px;margin:0;padding:0;list-style:none}
+.poll{
+  width:100%;text-align:left;cursor:pointer;background:var(--bg);
+  border:2px solid var(--edge-soft);border-radius:8px;padding:12px 14px;
+  color:inherit;font:inherit;display:grid;gap:9px;
+  transition:border-color .15s,transform .12s;
+}
+.poll:hover{border-color:var(--edge)}
+.poll[aria-pressed="true"]{border-color:var(--hot);background:var(--hot-soft)}
+.poll__top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
+.poll__name{font-family:"Syne",sans-serif;font-weight:800;font-size:1rem}
+.poll__pct{font-family:"Martian Mono",monospace;font-size:.76rem;font-variant-numeric:tabular-nums;color:var(--text-dim)}
+.bar{height:9px;border-radius:999px;background:var(--surface-alt);overflow:hidden;border:1px solid var(--edge-soft)}
+.bar i{display:block;height:100%;background:var(--brand);width:0;transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.poll[aria-pressed="true"] .bar i{background:var(--hot)}
+.votenote{font-size:.82rem;color:var(--text-faint);margin-top:4px}
+
+/* ---- studio / log ---- */
+.two{display:grid;gap:34px}
+@media(min-width:900px){.two{grid-template-columns:1fr 1fr;gap:56px}}
+.values{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.values li{
+  display:grid;grid-template-columns:auto 1fr;gap:16px;
+  padding:18px 0;border-top:2px solid var(--edge-soft);
+}
+.values li:last-child{border-bottom:2px solid var(--edge-soft)}
+.values h3{font-size:1.08rem;margin-bottom:5px}
+.values p{font-size:.9rem;color:var(--text-dim)}
+.values .k{
+  font-family:"Martian Mono",monospace;font-size:.6rem;font-weight:600;
+  color:var(--hot);padding-top:4px;
+}
+.log{display:grid;gap:0;margin:0;padding:0;list-style:none}
+.log li{
+  display:grid;grid-template-columns:82px 1fr;gap:14px;align-items:baseline;
+  padding:13px 0;border-bottom:1px solid var(--edge-soft);
+}
+.log time{
+  font-family:"Martian Mono",monospace;font-size:.6rem;font-weight:600;
+  color:var(--text-faint);letter-spacing:.04em;
+}
+.log b{font-weight:700;font-size:.94rem}
+.log p{font-size:.86rem;color:var(--text-dim)}
+
+/* ---- acquisitions ---- */
+.acq{background:var(--text);color:var(--bg)}
+.acq .eyebrow{color:color-mix(in srgb,var(--bg) 62%,transparent)}
+.acq .eyebrow::after{background:color-mix(in srgb,var(--bg) 26%,transparent)}
+.acq .sechead p{color:color-mix(in srgb,var(--bg) 76%,transparent)}
+.acq .rule{background:color-mix(in srgb,var(--bg) 30%,transparent)}
+.steps{display:grid;gap:14px;margin:0;padding:0;list-style:none;counter-reset:s}
+@media(min-width:760px){.steps{grid-template-columns:repeat(2,1fr)}}
+@media(min-width:1100px){.steps{grid-template-columns:repeat(4,1fr)}}
+.steps li{
+  counter-increment:s;padding:20px 18px;border-radius:8px;
+  border:2px solid color-mix(in srgb,var(--bg) 34%,transparent);
+  display:grid;gap:8px;align-content:start;
+}
+.steps li::before{
+  content:counter(s,decimal-leading-zero);
+  font-family:"Martian Mono",monospace;font-size:.72rem;font-weight:600;
+  color:var(--brand);
+}
+.steps h3{font-size:1.05rem}
+.steps p{font-size:.87rem;color:color-mix(in srgb,var(--bg) 72%,transparent)}
+.criteria{display:flex;flex-wrap:wrap;gap:9px;margin-top:8px}
+.criteria span{
+  font-family:"Martian Mono",monospace;font-size:.58rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.09em;
+  padding:7px 12px;border-radius:999px;
+  border:2px solid color-mix(in srgb,var(--bg) 30%,transparent);
+}
+.acqgrid{display:grid;gap:34px;margin-bottom:40px}
+@media(min-width:900px){.acqgrid{grid-template-columns:1fr 1fr;gap:56px}}
+.offer{
+  border:2px solid var(--brand);border-radius:8px;padding:22px;
+  display:grid;gap:12px;
+}
+.offer .counter{color:var(--brand)}
+
+/* ---- contact ---- */
+.contact{display:grid;gap:34px}
+@media(min-width:940px){.contact{grid-template-columns:.85fr 1.15fr;gap:56px;align-items:start}}
+.deets{display:grid;gap:0;margin:0}
+.deets div{
+  display:grid;gap:3px;padding:15px 0;border-bottom:1px solid var(--edge-soft);
+}
+.deets dt{
+  font-family:"Martian Mono",monospace;font-size:.56rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.12em;color:var(--text-faint);
+}
+.deets dd{margin:0;font-weight:700}
+.deets a{color:var(--hot)}
+.form{padding:24px;display:grid;gap:16px}
+@media(min-width:600px){.form{padding:30px}}
+.f2{display:grid;gap:16px}
+@media(min-width:640px){.f2{grid-template-columns:1fr 1fr}}
+.field{display:grid;gap:6px}
+.field label{
+  font-family:"Martian Mono",monospace;font-size:.58rem;font-weight:600;
+  text-transform:uppercase;letter-spacing:.12em;color:var(--text-dim);
+}
+.field input,.field select,.field textarea{
+  font:inherit;font-size:.95rem;color:var(--text);
+  background:var(--field);border:2px solid var(--edge-soft);border-radius:7px;
+  padding:12px 13px;width:100%;transition:border-color .15s;
+}
+.field textarea{min-height:132px;resize:vertical}
+.field select{appearance:none;cursor:pointer;
+  background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);
+  background-position:calc(100% - 20px) 55%,calc(100% - 14px) 55%;
+  background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:42px;
+}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--hot);outline:none}
+.field .err{
+  font-family:"Martian Mono",monospace;font-size:.58rem;font-weight:600;
+  color:var(--hot);letter-spacing:.04em;
+}
+.field [aria-invalid="true"]{border-color:var(--hot)}
+.formfoot{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
+.formfoot small{font-size:.76rem;color:var(--text-faint);max-width:34ch}
+.sent{
+  border:2px solid var(--live);border-radius:8px;padding:18px;
+  display:grid;gap:6px;background:color-mix(in srgb,var(--live) 10%,transparent);
+}
+.sent b{font-family:"Syne",sans-serif;font-weight:800;font-size:1.1rem}
+.sent p{font-size:.88rem;color:var(--text-dim)}
+
+/* ---- footer ---- */
+.foot{border-top:2px solid var(--edge);padding:44px 0 34px}
+.foot__grid{display:grid;gap:28px}
+@media(min-width:820px){.foot__grid{grid-template-columns:1.4fr 1fr 1fr;gap:44px}}
+.foot h4{
+  font-family:"Martian Mono",monospace;font-weight:600;font-size:.58rem;
+  text-transform:uppercase;letter-spacing:.12em;color:var(--text-faint);margin-bottom:12px;
+}
+.foot ul{list-style:none;margin:0;padding:0;display:grid;gap:9px}
+.foot ul a{text-decoration:none;font-size:.92rem;color:var(--text-dim)}
+.foot ul a:hover{color:var(--hot)}
+.socials{display:flex;gap:9px;margin-top:16px}
+.socials a{
+  width:40px;height:40px;display:grid;place-items:center;
+  border:2px solid var(--edge);border-radius:9px;background:var(--surface);
+  box-shadow:3px 3px 0 var(--lift);transition:transform .14s,background .14s;
+}
+.socials a:hover{transform:translate(-2px,-2px);background:var(--brand);color:var(--on-brand)}
+.socials svg{width:18px;height:18px;fill:currentColor}
+.legal{
+  margin-top:36px;padding-top:20px;border-top:1px solid var(--edge-soft);
+  display:flex;flex-wrap:wrap;gap:12px;justify-content:space-between;
+  font-size:.76rem;color:var(--text-faint);
+}
+
+/* ---- motion ---- */
+.reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+@media(prefers-reduced-motion:no-preference){html{scroll-behavior:smooth}}
+</style>
+
+<canvas id="field" aria-hidden="true"></canvas>
+
+<!-- ============================ NAV ============================ -->
+<header class="nav">
+  <div class="wrap nav__in">
+    <a class="mark" href="#top"><span class="mark__glyph"><i></i></span><span data-bind="name">OVERBUILT</span></a>
+    <nav class="navlinks" aria-label="Primary">
+      <a href="#games">Our games</a>
+      <a href="#spotlight">Spotlight vote</a>
+      <a href="#studio">Studio</a>
+      <a href="#acquire">Acquisitions</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <span class="pill mono nav__meter"><i class="dot-live"></i><span data-bind="navVisits">0</span>&nbsp;visits</span>
+    <button class="iconbtn" id="themeBtn" type="button" aria-label="Switch colour theme" title="Switch theme">
+      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M19.1 4.9l-1.5 1.5M6.4 17.6l-1.5 1.5"/></svg>
+    </button>
+    <button class="iconbtn menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+  <div class="drawer wrap" id="drawer" hidden>
+    <a href="#games">Our games</a>
+    <a href="#spotlight">Spotlight vote</a>
+    <a href="#studio">Studio</a>
+    <a href="#acquire">Acquisitions</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<main id="top">
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <div class="wrap hero__grid">
+    <div>
+      <p class="eyebrow eyebrow--plain">Roblox studio · Est. 2019 · <span data-bind="gameCount">0</span> live experiences</p>
+      <h1>Small rooms.<br><span class="out">Loud</span> <em>worlds.</em></h1>
+      <p class="hero__sub">We are a seven-person Roblox studio building round-based chaos, tycoons that never sit still, and roleplay towns with too much lore. Play them, or bring us yours.</p>
+      <div class="hero__cta">
+        <a class="btn btn--solid" href="#games">See the games</a>
+        <a class="btn" href="#acquire">Sell us your game</a>
+      </div>
+    </div>
+    <div class="card nowcard reveal">
+      <div class="nowcard__head">
+        <p class="eyebrow eyebrow--plain"><i class="dot-live"></i>Live right now</p>
+        <span class="mono" style="font-size:.7rem;color:var(--text-faint)" data-bind="clock">--:--</span>
+      </div>
+      <ul class="nowlist" id="nowlist"></ul>
+      <p style="font-size:.76rem;color:var(--text-faint)">Player counts refresh every 30 seconds.</p>
+    </div>
+  </div>
+  <div class="ticker" aria-hidden="true"><div class="ticker__track" id="ticker"></div></div>
+</section>
+
+<!-- ============================ STATS ============================ -->
+<section class="band" style="padding-top:56px">
+  <div class="wrap">
+    <div class="headline-num reveal">
+      <p class="eyebrow">By the numbers</p>
+      <h2 style="font-size:clamp(1.6rem,4vw,2.4rem);margin-top:6px">Players have spent</h2>
+      <span class="counter" data-count="totalVisits">0</span>
+      <h2 style="font-size:clamp(1.6rem,4vw,2.4rem)">visits inside our worlds.</h2>
+      <p>Every number on this page is pulled from one array in the source. Point it at the Roblox Games API and it goes live.</p>
+    </div>
+    <div class="statgrid">
+      <div class="card stat reveal"><span class="stat__l">Total visits</span><span class="stat__n" data-count="totalVisits">0</span><span class="stat__note">Across all published places</span></div>
+      <div class="card stat reveal"><span class="stat__l">Playing now</span><span class="stat__n" style="color:var(--live)" data-count="livePlayers">0</span><span class="stat__note">Concurrent, all servers</span></div>
+      <div class="card stat reveal"><span class="stat__l">Favourites</span><span class="stat__n" data-count="favourites">0</span><span class="stat__note">Saved by players</span></div>
+      <div class="card stat reveal"><span class="stat__l">Group members</span><span class="stat__n" data-count="members">0</span><span class="stat__note">Roblox community group</span></div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+<!-- ============================ GAMES ============================ -->
+<section class="band" id="games">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div>
+        <p class="eyebrow">The catalogue</p>
+        <h2>Our games</h2>
+        <p>Eight places, one group, and a shared codebase we have been sharpening since 2019. Sorted by lifetime visits.</p>
+      </div>
+      <a class="btn btn--sm" href="#" data-bind="groupLink">Follow the group ↗</a>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Filter games by genre"></div>
+    <div class="games" id="gameGrid"></div>
+  </div>
+</section>
+
+<hr class="rule">
+<!-- ============================ SPOTLIGHT VOTE ============================ -->
+<section class="band" id="spotlight">
+  <div class="wrap">
+    <div class="card vote reveal">
+      <div>
+        <p class="eyebrow eyebrow--plain">Community pick</p>
+        <h2 style="font-size:clamp(1.8rem,4.4vw,2.6rem);margin-top:10px">Vote for next week's spotlight</h2>
+        <p style="color:var(--text-dim);margin-top:12px;max-width:38ch">The winning game gets the front-page banner, a developer stream, and a limited UGC drop. One vote per player, resets Monday.</p>
+        <div class="clock" id="clock" aria-label="Time until voting resets">
+          <div><b data-c="d">0</b><small>days</small></div>
+          <div><b data-c="h">00</b><small>hrs</small></div>
+          <div><b data-c="m">00</b><small>min</small></div>
+          <div><b data-c="s">00</b><small>sec</small></div>
+        </div>
+      </div>
+      <div>
+        <ul class="polls" id="polls"></ul>
+        <p class="votenote" id="voteNote">Pick one — your choice is remembered on this device.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
+<!-- ============================ STUDIO ============================ -->
+<section class="band" id="studio">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div>
+        <p class="eyebrow">Who we are</p>
+        <h2>Seven people, one shared build</h2>
+        <p>No publisher, no outsourcing, no asset flips. Everything ships from the same repo and the same Tuesday night playtest.</p>
+      </div>
+    </div>
+    <div class="two">
+      <ul class="values reveal">
+        <li><span class="k">01</span><div><h3>Ship on Thursdays</h3><p>Every game gets a real update every week. Not a re-skin, not a sale — a change players can feel in the first minute.</p></div></li>
+        <li><span class="k">02</span><div><h3>Playtest before pitch</h3><p>New mechanics go into a private place with 40 regulars before a single line of marketing copy is written.</p></div></li>
+        <li><span class="k">03</span><div><h3>Monetise the fun, not the wall</h3><p>No pay-to-progress, no timers you can only skip with Robux. Cosmetics, passes and events — the stuff people brag about.</p></div></li>
+        <li><span class="k">04</span><div><h3>Moderation is a feature</h3><p>Two full-time moderators, in-house chat filters, and a report queue we actually clear. Parents notice.</p></div></li>
+      </ul>
+      <div class="reveal">
+        <p class="eyebrow">Build log</p>
+        <ul class="log" style="margin-top:14px">
+          <li><time>18 Aug</time><div><b>Rooftop Rivals — Season 7</b><p>New borough, wall-run rework, ranked ladder out of beta.</p></div></li>
+          <li><time>11 Aug</time><div><b>Ridgeview High — Clubs update</b><p>Player-run clubs with shared funds, notice boards and elections.</p></div></li>
+          <li><time>04 Aug</time><div><b>Studio-wide</b><p>Rolled our own anti-exploit sync check across every place. Kick rate down 61%.</p></div></li>
+          <li><time>28 Jul</time><div><b>Nightline Metro — launch</b><p>Shipped out of paid access into open beta at 1.9M visits.</p></div></li>
+          <li><time>21 Jul</time><div><b>The Long Hall</b><p>Seasonal horror event returns for Halloween; co-op capped at six.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ACQUISITIONS ============================ -->
+<section class="band acq" id="acquire">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div>
+        <p class="eyebrow">Game acquisitions</p>
+        <h2>We buy Roblox games.</h2>
+        <p>If you built something with real retention and you are out of time, energy or Robux to run it — we will take it on, keep your name on it, and pay you for it.</p>
+      </div>
+      <a class="btn btn--solid" href="#contact">Start a conversation</a>
+    </div>
+    <div class="acqgrid">
+      <div class="reveal">
+        <h3 style="font-size:1.3rem;margin-bottom:12px">What we look for</h3>
+        <p style="color:color-mix(in srgb,var(--bg) 74%,transparent);font-size:.95rem">We care far more about the shape of your retention curve than your visit count. A 40k-visit game that people come back to on day seven beats a 4M-visit game they never reopen.</p>
+        <div class="criteria">
+          <span>D1 retention ≥ 25%</span><span>1k+ daily players</span><span>Clean asset ownership</span>
+          <span>No stolen scripts</span><span>Group-owned place</span><span>90 days of analytics</span>
+        </div>
+      </div>
+      <div class="offer reveal">
+        <p class="eyebrow eyebrow--plain" style="color:var(--brand)">Typical deal in 2026</p>
+        <span class="counter">18–30×</span>
+        <p style="color:color-mix(in srgb,var(--bg) 76%,transparent);font-size:.95rem">monthly net Robux revenue, paid in USD. Split as 70% on transfer and 30% over six months, or all up front at a discount. Your call.</p>
+      </div>
+    </div>
+    <ol class="steps">
+      <li class="reveal"><h3>Send analytics</h3><p>Screenshots of the last 90 days: visits, DAU, retention and revenue. That is enough for a first read.</p></li>
+      <li class="reveal"><h3>Thirty-minute call</h3><p>We play it together on a call, you walk us through the code and what you would have built next.</p></li>
+      <li class="reveal"><h3>Offer in 72 hours</h3><p>A written number with the reasoning behind it. No exploding deadlines, no pressure to sign on the call.</p></li>
+      <li class="reveal"><h3>Transfer and payout</h3><p>Group transfer, first payment same week, and a credit line on the game page that stays there.</p></li>
+    </ol>
+  </div>
+</section>
+
+<!-- ============================ CONTACT ============================ -->
+<section class="band" id="contact">
+  <div class="wrap contact">
+    <div class="reveal">
+      <p class="eyebrow">Get in touch</p>
+      <h2 style="font-size:clamp(2rem,5vw,3rem);margin-top:10px">Pitch us<br>something.</h2>
+      <p style="color:var(--text-dim);margin-top:14px">Acquisitions, publishing, portfolios, press — same inbox, read every morning.</p>
+      <dl class="deets">
+        <div><dt>Business email</dt><dd><a href="#" data-bind="email">hello@overbuilt.gg</a></dd></div>
+        <div><dt>Response time</dt><dd>Within 48 hours, weekdays</dd></div>
+        <div><dt>Discord</dt><dd>Fastest route — ask in #studio-inbox</dd></div>
+        <div><dt>Studio</dt><dd>Remote, anchored in Manchester</dd></div>
+      </dl>
+    </div>
+    <form class="card form reveal" id="contactForm" novalidate>
+      <div class="f2">
+        <div class="field">
+          <label for="f-name">Your name</label>
+          <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Ada Nakamura">
+          <span class="err" id="e-name" hidden></span>
+        </div>
+        <div class="field">
+          <label for="f-email">Email</label>
+          <input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@studio.com">
+          <span class="err" id="e-email" hidden></span>
+        </div>
+      </div>
+      <div class="f2">
+        <div class="field">
+          <label for="f-type">What is this about?</label>
+          <select id="f-type" name="type">
+            <option>Selling my game</option>
+            <option>Publishing partnership</option>
+            <option>Developer application</option>
+            <option>Brand or press</option>
+            <option>Something else</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="f-link">Game or portfolio link</label>
+          <input id="f-link" name="link" type="text" placeholder="roblox.com/games/…">
+        </div>
+      </div>
+      <div class="field">
+        <label for="f-msg">Message</label>
+        <textarea id="f-msg" name="message" placeholder="Tell us what you built, how it is performing, and what you want to happen next."></textarea>
+        <span class="err" id="e-msg" hidden></span>
+      </div>
+      <div class="formfoot">
+        <button class="btn btn--hot" type="submit">Send it over</button>
+        <small>Template note: this form validates locally. Wire <code>submitEnquiry()</code> to your own endpoint.</small>
+      </div>
+      <div class="sent" id="sent" hidden>
+        <b>Looks good — but nothing was sent.</b>
+        <p id="sentBody">This is a front-end template with no server behind it yet.</p>
+      </div>
+    </form>
+  </div>
+</section>
+</main>
+
+<!-- ============================ FOOTER ============================ -->
+<footer class="foot">
+  <div class="wrap">
+    <div class="foot__grid">
+      <div>
+        <a class="mark" href="#top" style="font-size:1.35rem"><span class="mark__glyph"><i></i></span><span data-bind="name">OVERBUILT</span></a>
+        <p style="color:var(--text-dim);font-size:.92rem;margin-top:12px;max-width:34ch">Small rooms, loud worlds. Building on Roblox since 2019.</p>
+        <div class="socials">
+          <a href="#" data-bind="discord" aria-label="Discord"><svg viewBox="0 0 24 24"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.319 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.011c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.01c.12.099.246.198.373.292a.077.077 0 0 1-.007.128c-.598.349-1.22.65-1.873.891a.077.077 0 0 0-.04.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.029 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.029zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.095 2.157 2.42 0 1.332-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg></a>
+          <a href="#" data-bind="x" aria-label="X"><svg viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+          <a href="#" data-bind="roblox" aria-label="Roblox group"><svg viewBox="0 0 24 24"><path d="M5.2 1.5 22.5 6.1 17.9 23.4.6 18.8zm5.1 8.2-1.2 4.5 4.5 1.2 1.2-4.5z"/></svg></a>
+        </div>
+      </div>
+      <div>
+        <h4>Explore</h4>
+        <ul>
+          <li><a href="#games">Our games</a></li>
+          <li><a href="#spotlight">Spotlight vote</a></li>
+          <li><a href="#studio">Studio</a></li>
+          <li><a href="#acquire">Game acquisitions</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>For developers</h4>
+        <ul>
+          <li><a href="#acquire">Sell your game</a></li>
+          <li><a href="#contact">Work with us</a></li>
+          <li><a href="#acquire">Acquisition criteria</a></li>
+          <li><a href="#contact">Press kit</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="legal">
+      <span>© 2026 Overbuilt Studio — a fictional studio used to demonstrate this template. All figures are sample data.</span>
+      <span>Not affiliated with or endorsed by Roblox Corporation.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ================================================================
+   1. EDIT THIS BLOCK — everything on the page reads from it.
+   To go live, replace the numbers with a fetch to the Roblox
+   Games API (games/v1/games?universeIds=…) inside refreshLive().
+   ================================================================ */
+const STUDIO = {
+  name: "OVERBUILT",
+  email: "hello@overbuilt.gg",
+  members: 214880,
+  links: { group: "#", discord: "#", x: "#", roblox: "#" },
+  games: [
+    { name:"Rooftop Rivals", initials:"RR", genre:"PvP", status:"Flagship", blurb:"Round-based parkour duels across a city that keeps rebuilding itself between matches.", visits:41204880, live:612, favourites:486210, rating:94, c1:"#FF7A3D", c2:"#7A1FA2", pat:"rays" },
+    { name:"Barnyard Tycoon", initials:"BT", genre:"Tycoon", status:"Live", blurb:"Build the farm, automate the chores, then defend the harvest from the neighbours.", visits:28915340, live:402, favourites:331904, rating:91, c1:"#F5C518", c2:"#2F7D46", pat:"stripes" },
+    { name:"Emote Arena", initials:"EA", genre:"Social", status:"Updating", blurb:"A dance floor with a scoreboard. 250+ emotes, weekly themes, no combat anywhere.", visits:19447102, live:388, favourites:268455, rating:88, c1:"#FF4D9D", c2:"#4B2AC9", pat:"dots" },
+    { name:"Ridgeview High", initials:"RH", genre:"Roleplay", status:"Live", blurb:"Town roleplay with real jobs, player-run clubs, and a rumour system that never forgets.", visits:16120773, live:274, favourites:214880, rating:92, c1:"#33C9E8", c2:"#1B3A8C", pat:"grid" },
+    { name:"Slime Orchard", initials:"SO", genre:"Simulator", status:"Live", blurb:"Grow it, breed it, sell it. A pet simulator where the pets have opinions about you.", visits:9733418, live:156, favourites:132067, rating:90, c1:"#9BE15D", c2:"#12876A", pat:"arcs" },
+    { name:"The Long Hall", initials:"LH", genre:"Horror", status:"Seasonal", blurb:"Six players, one corridor, and a house that rearranges itself when nobody is looking.", visits:6301559, live:98, favourites:98442, rating:95, c1:"#6E5AA8", c2:"#171021", pat:"bars" },
+    { name:"Pit Crew Pro", initials:"PC", genre:"Racing", status:"Live", blurb:"You are not the driver. You are the four seconds that decide the race.", visits:4812904, live:121, favourites:71330, rating:87, c1:"#FF3B30", c2:"#241F2B", pat:"stripes" },
+    { name:"Nightline Metro", initials:"NM", genre:"Roleplay", status:"New", blurb:"Drive the last train of the night. Passengers, delays, and a timetable that judges you.", visits:1908662, live:89, favourites:40118, rating:93, c1:"#2FD9C5", c2:"#123A55", pat:"grid" }
+  ],
+  /* starting tallies for the spotlight poll */
+  poll: { "Rooftop Rivals":412, "Ridgeview High":388, "The Long Hall":296, "Emote Arena":244 }
+};
+
+/* ================================================================
+   2. Helpers
+   ================================================================ */
+const $  = (s, r = document) => r.querySelector(s);
+const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+const fmt = n => Math.round(n).toLocaleString("en-US");
+const compact = n => n >= 1e6 ? (n / 1e6).toFixed(1) + "M" : n >= 1e3 ? Math.round(n / 1e3) + "k" : String(n);
+const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
+const store = {
+  get(k){ try { return localStorage.getItem(k); } catch { return null; } },
+  set(k, v){ try { localStorage.setItem(k, v); } catch { /* private mode */ } }
+};
+const totals = () => ({
+  totalVisits: STUDIO.games.reduce((a, g) => a + g.visits, 0),
+  livePlayers: STUDIO.games.reduce((a, g) => a + g.live, 0),
+  favourites:  STUDIO.games.reduce((a, g) => a + g.favourites, 0),
+  members:     STUDIO.members
+});
+
+/* ---- bind studio details into the markup ---- */
+$$("[data-bind]").forEach(el => {
+  const k = el.dataset.bind;
+  if (k === "name") el.textContent = STUDIO.name;
+  if (k === "gameCount") el.textContent = STUDIO.games.length;
+  if (k === "email") { el.textContent = STUDIO.email; el.href = "mailto:" + STUDIO.email; }
+  if (k === "groupLink") el.href = STUDIO.links.group;
+  if (STUDIO.links[k]) el.href = STUDIO.links[k];
+});
+
+/* ================================================================
+   3. Games grid + genre filter
+   ================================================================ */
+const grid = $("#gameGrid");
+grid.innerHTML = STUDIO.games.map(g => `
+  <article class="card game reveal" data-genre="${g.genre}">
+    <div class="cover" data-pat="${g.pat}" style="--c1:${g.c1};--c2:${g.c2}" role="img" aria-label="${g.name} cover art">
+      <span class="cover__mono">${g.initials}</span>
+      <span class="cover__tag">${g.genre}</span>
+      <span class="cover__status">${g.status}</span>
+    </div>
+    <div class="game__body">
+      <h3>${g.name}</h3>
+      <p>${g.blurb}</p>
+      <dl class="game__meta">
+        <div><dt>Visits</dt><dd>${compact(g.visits)}</dd></div>
+        <div><dt>Playing</dt><dd style="color:var(--live)" data-live="${g.name}">${g.live}</dd></div>
+        <div><dt>Rating</dt><dd>${g.rating}%</dd></div>
+      </dl>
+    </div>
+  </article>`).join("");
+
+const genres = ["All", ...new Set(STUDIO.games.map(g => g.genre))];
+$("#filters").innerHTML = genres.map((t, i) =>
+  `<button class="chip" type="button" aria-pressed="${i === 0}">${t}</button>`).join("");
+$("#filters").addEventListener("click", e => {
+  const b = e.target.closest(".chip"); if (!b) return;
+  $$("#filters .chip").forEach(c => c.setAttribute("aria-pressed", String(c === b)));
+  const want = b.textContent;
+  $$(".game", grid).forEach(card =>
+    card.classList.toggle("is-hidden", want !== "All" && card.dataset.genre !== want));
+});
+
+/* ================================================================
+   4. Live board, ticker and counters
+   ================================================================ */
+function paintLive(){
+  const top = [...STUDIO.games].sort((a, b) => b.live - a.live).slice(0, 5);
+  $("#nowlist").innerHTML = top.map(g =>
+    `<li><b>${g.name}</b><span>${g.live} playing</span></li>`).join("");
+  STUDIO.games.forEach(g => {
+    const cell = grid.querySelector(`[data-live="${CSS.escape(g.name)}"]`);
+    if (cell) cell.textContent = g.live;
+  });
+  const t = totals();
+  $$('[data-count="livePlayers"]').forEach(el => el.textContent = fmt(t.livePlayers));
+  $$('[data-bind="navVisits"]').forEach(el => el.textContent = fmt(t.totalVisits));
+  const d = new Date();
+  $('[data-bind="clock"]').textContent =
+    String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0");
+}
+
+/* Demo drift. Swap the body of this for a real fetch when you go live. */
+function refreshLive(){
+  STUDIO.games.forEach(g => {
+    g.live = Math.max(8, g.live + Math.round((Math.random() - 0.48) * Math.max(4, g.live * 0.06)));
+  });
+  paintLive();
+}
+
+$("#ticker").innerHTML = (() => {
+  const items = STUDIO.games.map(g => `<span>${g.name} — ${compact(g.visits)} visits</span>`).join("");
+  return items + items;   /* duplicated for a seamless loop */
+})();
+
+function countTo(el, target){
+  if (calm) { el.textContent = fmt(target); return; }
+  const dur = 1400, t0 = performance.now();
+  const step = now => {
+    const p = Math.min(1, (now - t0) / dur);
+    el.textContent = fmt(target * (1 - Math.pow(1 - p, 3)));
+    if (p < 1) requestAnimationFrame(step);
+  };
+  requestAnimationFrame(step);
+}
+
+const counters = new IntersectionObserver((entries, obs) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const key = e.target.dataset.count;
+    if (key !== "livePlayers") countTo(e.target, totals()[key]);
+    obs.unobserve(e.target);
+  });
+}, { threshold: .4 });
+$$("[data-count]").forEach(el => counters.observe(el));
+
+/* ================================================================
+   5. Spotlight vote — one choice per browser, kept in localStorage
+   ================================================================ */
+const VOTE_KEY = "overbuilt.spotlight.v1";
+let myVote = store.get(VOTE_KEY);
+
+function paintPolls(){
+  const tally = { ...STUDIO.poll };
+  if (myVote && tally[myVote] != null) tally[myVote] += 1;
+  const sum = Object.values(tally).reduce((a, b) => a + b, 0);
+  $("#polls").innerHTML = Object.entries(tally).map(([name, n]) => {
+    const pct = Math.round((n / sum) * 100);
+    return `<li><button class="poll" type="button" aria-pressed="${myVote === name}" data-vote="${name}">
+      <span class="poll__top"><span class="poll__name">${name}</span>
+      <span class="poll__pct">${pct}% · ${fmt(n)}</span></span>
+      <span class="bar"><i style="width:${pct}%"></i></span>
+    </button></li>`;
+  }).join("");
+  $("#voteNote").textContent = myVote
+    ? `Locked in for ${myVote}. Tap another game to change it.`
+    : "Pick one — your choice is remembered on this device.";
+}
+$("#polls").addEventListener("click", e => {
+  const b = e.target.closest("[data-vote]"); if (!b) return;
+  myVote = b.dataset.vote === myVote ? null : b.dataset.vote;
+  if (myVote) store.set(VOTE_KEY, myVote); else store.set(VOTE_KEY, "");
+  paintPolls();
+});
+
+/* countdown to Monday 00:00 local time */
+function paintClock(){
+  const now = new Date();
+  const next = new Date(now);
+  next.setHours(0, 0, 0, 0);
+  next.setDate(now.getDate() + ((8 - now.getDay()) % 7 || 7));
+  let left = Math.max(0, next - now) / 1000;
+  const d = Math.floor(left / 86400); left -= d * 86400;
+  const h = Math.floor(left / 3600);  left -= h * 3600;
+  const m = Math.floor(left / 60);
+  const s = Math.floor(left - m * 60);
+  const set = (k, v, pad) => { const el = $(`#clock [data-c="${k}"]`); if (el) el.textContent = pad ? String(v).padStart(2, "0") : v; };
+  set("d", d); set("h", h, 1); set("m", m, 1); set("s", s, 1);
+}
+
+/* ================================================================
+   6. Contact form — validates here, sends nowhere yet
+   ================================================================ */
+function submitEnquiry(data){
+  /* Wire this up: POST to your own endpoint, Discord webhook or form service.
+     return fetch("/api/enquiries", { method:"POST", body: JSON.stringify(data) }); */
+  return Promise.resolve(data);
+}
+const form = $("#contactForm");
+form.addEventListener("submit", async e => {
+  e.preventDefault();
+  const checks = [
+    ["f-name", "e-name", v => v.trim().length > 1, "Tell us what to call you."],
+    ["f-email", "e-email", v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()), "That email address is not quite right."],
+    ["f-msg", "e-msg", v => v.trim().length > 19, "A few more details, please — 20 characters minimum."]
+  ];
+  let firstBad = null;
+  for (const [id, errId, ok, msg] of checks){
+    const input = $("#" + id), err = $("#" + errId), good = ok(input.value);
+    input.setAttribute("aria-invalid", String(!good));
+    err.hidden = good;
+    err.textContent = good ? "" : msg;
+    if (!good && !firstBad) firstBad = input;
+  }
+  if (firstBad) { firstBad.focus(); return; }
+
+  const data = Object.fromEntries(new FormData(form).entries());
+  await submitEnquiry(data);
+  const sent = $("#sent");
+  $("#sentBody").textContent =
+    `Validated “${data.type}” from ${data.email}. This template has no server behind it — connect submitEnquiry() to your inbox, Discord webhook or form service and it will post for real.`;
+  sent.hidden = false;
+  sent.scrollIntoView({ block: "nearest", behavior: calm ? "auto" : "smooth" });
+});
+
+/* ================================================================
+   7. Chrome: theme, menu, scroll spy, reveals
+   ================================================================ */
+const root = document.documentElement;
+const savedTheme = store.get("overbuilt.theme");
+if (savedTheme) root.setAttribute("data-theme", savedTheme);
+$("#themeBtn").addEventListener("click", () => {
+  const dark = root.getAttribute("data-theme")
+    ? root.getAttribute("data-theme") === "dark"
+    : matchMedia("(prefers-color-scheme: dark)").matches;
+  const next = dark ? "light" : "dark";
+  root.setAttribute("data-theme", next);
+  store.set("overbuilt.theme", next);
+  paintField();
+});
+
+const menuBtn = $("#menuBtn"), drawer = $("#drawer");
+const setMenu = open => { drawer.hidden = !open; menuBtn.setAttribute("aria-expanded", String(open)); };
+menuBtn.addEventListener("click", () => setMenu(drawer.hidden));
+drawer.addEventListener("click", e => { if (e.target.tagName === "A") setMenu(false); });
+addEventListener("keydown", e => { if (e.key === "Escape") setMenu(false); });
+
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    $$(".navlinks a").forEach(a =>
+      a.classList.toggle("is-on", a.getAttribute("href") === "#" + e.target.id));
+  });
+}, { rootMargin: "-45% 0px -50% 0px" });
+["games", "spotlight", "studio", "acquire", "contact"].forEach(id => {
+  const el = document.getElementById(id); if (el) spy.observe(el);
+});
+
+const reveals = new IntersectionObserver((entries, obs) => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add("in"); obs.unobserve(e.target); } });
+}, { threshold: .12, rootMargin: "0px 0px -8% 0px" });
+$$(".reveal").forEach(el => calm ? el.classList.add("in") : reveals.observe(el));
+
+/* ================================================================
+   8. Ambient halftone field — dots swell along a slow diagonal wave
+   ================================================================ */
+const cv = $("#field"), ctx = cv.getContext("2d");
+let W = 0, H = 0, dot = "rgba(0,0,0,.2)";
+function sizeField(){
+  const dpr = Math.min(devicePixelRatio || 1, 2);
+  W = innerWidth; H = innerHeight;
+  cv.width = W * dpr; cv.height = H * dpr;
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+}
+function paintField(t = 0){
+  dot = getComputedStyle(root).getPropertyValue("--dot").trim() || dot;
+  ctx.clearRect(0, 0, W, H);
+  ctx.fillStyle = dot;
+  const gap = W < 640 ? 26 : 30;
+  for (let y = gap / 2; y < H + gap; y += gap){
+    for (let x = gap / 2; x < W + gap; x += gap){
+      const wave = Math.sin((x + y) * 0.006 + t * 0.00035) + Math.sin((x - y) * 0.004 - t * 0.00022);
+      const r = 0.5 + (wave + 2) * 0.55;
+      ctx.beginPath();
+      ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+}
+function loop(t){ paintField(t); requestAnimationFrame(loop); }
+addEventListener("resize", () => { sizeField(); paintField(performance.now()); });
+matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => paintField(performance.now()));
+
+/* ================================================================
+   9. Go
+   ================================================================ */
+sizeField();
+paintLive();
+paintPolls();
+paintClock();
+setInterval(paintClock, 1000);
+setInterval(refreshLive, 30000);
+if (calm) paintField(0); else requestAnimationFrame(loop);
+</script>
+
+</body>
+</html>

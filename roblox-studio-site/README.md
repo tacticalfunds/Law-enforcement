@@ -51,10 +51,13 @@ const STUDIO = {
 - **Cover art** — generated in CSS from `c1`, `c2` and `pat`
   (`rays`, `stripes`, `grid`, `arcs`, `dots`, `bars`). To use real thumbnails,
   replace the `.cover` div in the grid template with an `<img>`.
-- **Colours and type** — the palette lives in the `:root` token block at the top
-  of the stylesheet, defined three times: light, `prefers-color-scheme: dark`,
-  and an explicit `[data-theme]` for the header toggle. Change a token once and
-  both themes follow.
+- **Colours** — one `:root` token block at the top of the stylesheet holds the
+  whole palette: near-black ground, red signal, bone type. The page commits to
+  this single world rather than following the viewer's light/dark setting, so
+  every colour is painted explicitly and nothing is left to `color-scheme`.
+  Change `--brand` and `--hot` together to move off red.
+- **Type** — Archivo 800 for display, Karla for body, Martian Mono for anything
+  numeric. All three come from Google Fonts with real fallback stacks.
 
 ## Wiring up the live parts
 

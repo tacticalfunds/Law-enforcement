@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="description" content="A Roblox game studio website template: live stats, game catalogue, spotlight vote, acquisitions pitch and contact form.">
 <style>
-  :root{color-scheme:light}
+  :root{color-scheme:dark}
   body{margin:0}
   img{max-width:100%}
   [hidden]{display:none!important}
@@ -15,7 +15,7 @@
 <title>Overbuilt Studio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Karla:ital,wght@0,400;0,500;0,700;1,400&family=Martian+Mono:wght@400;600&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Karla:ital,wght@0,400;0,500;0,700;1,400&family=Martian+Mono:wght@400;600&display=swap">
 <style>
 /* ============================================================
    OVERBUILT — Roblox game studio site template
@@ -23,68 +23,29 @@
    studio, games and links. Everything else derives from it.
    ============================================================ */
 
-/* ---- tokens: light (bone poster) ---- */
+/* ---- palette ----------------------------------------------------
+   One committed world: near-black ground, red signal, bone type.
+   There is no light variant by design — the page paints every colour
+   explicitly so it holds on any host background.
+   ------------------------------------------------------------------ */
 :root{
-  --bg:#F4EEE4;
-  --surface:#FBF7F0;
-  --surface-alt:#E9DFD0;
-  --text:#1B1020;
-  --text-dim:#5F5069;
-  --text-faint:#8B7C94;
-  --edge:#1B1020;
-  --edge-soft:rgba(27,16,32,.16);
-  --brand:#F5A310;          /* fill only — always carries --on-brand text */
-  --on-brand:#1B1020;
-  --hot:#C8214F;            /* accent text + emphasis */
-  --hot-soft:rgba(200,33,79,.10);
-  --live:#0E8A63;
-  --lift:#1B1020;           /* hard offset shadow */
-  --dot:rgba(27,16,32,.13);
-  --field:#FFFFFF;
-  --scrim:rgba(244,238,228,.86);
-  color-scheme:light;
-}
-/* ---- tokens: dark (arcade ink) ---- */
-@media (prefers-color-scheme:dark){
-  :root:not([data-theme="light"]){
-    --bg:#150C1B;
-    --surface:#1F1329;
-    --surface-alt:#2A1A38;
-    --text:#F4EEE4;
-    --text-dim:#B7A5C2;
-    --text-faint:#8B7B96;
-    --edge:#EFE6DA;
-    --edge-soft:rgba(239,230,218,.18);
-    --brand:#FFB224;
-    --on-brand:#1B1020;
-    --hot:#FF7A9C;
-    --hot-soft:rgba(255,122,156,.12);
-    --live:#45E3AC;
-    --lift:#08040D;
-    --dot:rgba(244,238,228,.11);
-    --field:#170E1F;
-    --scrim:rgba(21,12,27,.86);
-    color-scheme:dark;
-  }
-}
-:root[data-theme="dark"]{
-  --bg:#150C1B;
-  --surface:#1F1329;
-  --surface-alt:#2A1A38;
-  --text:#F4EEE4;
-  --text-dim:#B7A5C2;
-  --text-faint:#8B7B96;
-  --edge:#EFE6DA;
-  --edge-soft:rgba(239,230,218,.18);
-  --brand:#FFB224;
-  --on-brand:#1B1020;
-  --hot:#FF7A9C;
-  --hot-soft:rgba(255,122,156,.12);
-  --live:#45E3AC;
-  --lift:#08040D;
-  --dot:rgba(244,238,228,.11);
-  --field:#170E1F;
-  --scrim:rgba(21,12,27,.86);
+  --bg:#0A0708;
+  --surface:#141011;
+  --surface-alt:#1E1819;
+  --text:#F2ECEB;
+  --text-dim:#A99B9C;
+  --text-faint:#8C7E80;
+  --edge:#EAE1E0;
+  --edge-soft:rgba(234,225,224,.16);
+  --brand:#D8121F;          /* fill red — always carries --on-brand text */
+  --on-brand:#FFF5F4;
+  --hot:#FF5C68;            /* red that stays legible as text on black */
+  --hot-soft:rgba(255,92,104,.12);
+  --live:#FF3B45;
+  --lift:#000000;           /* hard offset shadow */
+  --dot:rgba(255,92,104,.09);
+  --field:#100C0D;
+  --scrim:rgba(10,7,8,.88);
   color-scheme:dark;
 }
 
@@ -100,10 +61,10 @@ body{
   overflow-x:hidden;
 }
 h1,h2,h3,h4{
-  font-family:"Syne","Trebuchet MS",Verdana,sans-serif;
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
   font-weight:800;
-  line-height:.98;
-  letter-spacing:-.02em;
+  line-height:1.06;
+  letter-spacing:-.015em;
   text-wrap:balance;
   margin:0;
 }
@@ -136,7 +97,7 @@ img{max-width:100%}
 
 .btn{
   display:inline-flex;align-items:center;gap:.5em;
-  font-family:"Syne",sans-serif;font-weight:800;font-size:.95rem;
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:.95rem;
   letter-spacing:-.01em;
   padding:13px 22px;border-radius:999px;
   border:2px solid var(--edge);
@@ -190,7 +151,7 @@ section{scroll-margin-top:84px}
   height:64px;
 }
 .mark{
-  font-family:"Syne",sans-serif;font-weight:800;font-size:1.2rem;
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:1.2rem;
   letter-spacing:.02em;text-decoration:none;display:flex;align-items:center;gap:9px;
   margin-right:auto;
 }
@@ -224,7 +185,7 @@ section{scroll-margin-top:84px}
 }
 .drawer a{
   display:block;padding:11px 0;text-decoration:none;
-  font-family:"Syne",sans-serif;font-weight:800;font-size:1.35rem;
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:1.35rem;
   border-bottom:1px solid var(--edge-soft);
 }
 @media(min-width:940px){.drawer{display:none!important}}
@@ -235,7 +196,7 @@ section{scroll-margin-top:84px}
 .hero__grid{display:grid;gap:40px}
 @media(min-width:1000px){.hero__grid{grid-template-columns:1.35fr .85fr;gap:56px;align-items:end}}
 .hero h1{
-  font-size:clamp(2.9rem,9.2vw,6rem);
+  font-size:clamp(2.5rem,7.6vw,5rem);
   margin:18px 0 0;
 }
 .hero h1 em{font-style:normal;color:var(--hot);display:block}
@@ -276,7 +237,7 @@ section{scroll-margin-top:84px}
 /* ---- stats ---- */
 .counter{
   font-family:"Martian Mono",monospace;font-weight:600;
-  font-size:clamp(1.9rem,7.4vw,3.4rem);
+  font-size:clamp(1.75rem,6vw,2.9rem);
   letter-spacing:-.04em;line-height:1;font-variant-numeric:tabular-nums;
   color:var(--hot);
 }
@@ -285,7 +246,7 @@ section{scroll-margin-top:84px}
 @media(min-width:1000px){.statgrid{grid-template-columns:repeat(4,1fr)}}
 .stat{padding:18px 18px 20px;display:grid;gap:6px}
 .stat__n{
-  font-family:"Martian Mono",monospace;font-weight:600;font-size:1.7rem;
+  font-family:"Martian Mono",monospace;font-weight:600;font-size:1.55rem;
   line-height:1;font-variant-numeric:tabular-nums;letter-spacing:-.03em;
 }
 .stat__l{
@@ -303,7 +264,7 @@ section{scroll-margin-top:84px}
 }
 .sechead>a{justify-self:start}
 @media(min-width:900px){.sechead>a{justify-self:end}}
-.sechead h2{font-size:clamp(2rem,5vw,3.2rem)}
+.sechead h2{font-size:clamp(1.85rem,4.2vw,2.85rem)}
 .sechead p{color:var(--text-dim);max-width:52ch;margin-top:10px}
 
 /* ---- games ---- */
@@ -316,7 +277,7 @@ section{scroll-margin-top:84px}
   transition:background .15s,color .15s,border-color .15s;
 }
 .chip:hover{border-color:var(--edge);color:var(--text)}
-.chip[aria-pressed="true"]{background:var(--text);color:var(--bg);border-color:var(--text)}
+.chip[aria-pressed="true"]{background:var(--brand);color:var(--on-brand);border-color:var(--brand)}
 
 .games{display:grid;gap:18px}
 @media(min-width:640px){.games{grid-template-columns:repeat(2,1fr)}}
@@ -335,7 +296,7 @@ section{scroll-margin-top:84px}
   background:linear-gradient(150deg,var(--c1),var(--c2));
   display:grid;place-items:center;overflow:hidden;
 }
-.cover::before{content:"";position:absolute;inset:0;opacity:.55}
+.cover::before{content:"";position:absolute;inset:0;opacity:.42}
 .cover[data-pat="rays"]::before{
   background:repeating-conic-gradient(from 0deg at 50% 118%,rgba(255,255,255,.34) 0deg 7deg,transparent 7deg 14deg);
 }
@@ -357,25 +318,25 @@ section{scroll-margin-top:84px}
   background:repeating-linear-gradient(90deg,rgba(0,0,0,.18) 0 18px,transparent 18px 46px);
 }
 .cover__mono{
-  position:relative;font-family:"Syne",sans-serif;font-weight:800;
-  font-size:clamp(2.6rem,9vw,3.6rem);letter-spacing:-.05em;line-height:1;
-  color:#FFF8EC;text-shadow:3px 3px 0 rgba(24,12,30,.55);
+  position:relative;font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:800;
+  font-size:clamp(2.3rem,7.5vw,3.1rem);letter-spacing:-.05em;line-height:1;
+  color:#FFF1F0;text-shadow:3px 3px 0 rgba(0,0,0,.6);
 }
 .cover__tag{
   position:absolute;left:12px;bottom:12px;z-index:2;
   font-family:"Martian Mono",monospace;font-size:.55rem;font-weight:600;
   text-transform:uppercase;letter-spacing:.1em;
-  background:#1B1020;color:#F4EEE4;padding:5px 9px;border-radius:999px;
+  background:#0A0708;color:#F2ECEB;padding:5px 9px;border-radius:999px;
 }
 .cover__status{
   position:absolute;right:12px;top:12px;z-index:2;
   font-family:"Martian Mono",monospace;font-size:.55rem;font-weight:600;
   text-transform:uppercase;letter-spacing:.1em;
-  background:#FFF8EC;color:#1B1020;padding:5px 9px;border-radius:999px;
-  border:2px solid #1B1020;
+  background:#F2ECEB;color:#0A0708;padding:5px 9px;border-radius:999px;
+  border:2px solid #0A0708;
 }
 .game__body{padding:16px 16px 18px;display:grid;gap:10px;flex:1}
-.game__body h3{font-size:1.28rem}
+.game__body h3{font-size:1.18rem}
 .game__body>p{font-size:.9rem;color:var(--text-dim)}
 .game__meta{
   display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
@@ -419,11 +380,11 @@ section{scroll-margin-top:84px}
 .poll:hover{border-color:var(--edge)}
 .poll[aria-pressed="true"]{border-color:var(--hot);background:var(--hot-soft)}
 .poll__top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-.poll__name{font-family:"Syne",sans-serif;font-weight:800;font-size:1rem}
+.poll__name{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:1rem}
 .poll__pct{font-family:"Martian Mono",monospace;font-size:.76rem;font-variant-numeric:tabular-nums;color:var(--text-dim)}
 .bar{height:9px;border-radius:999px;background:var(--surface-alt);overflow:hidden;border:1px solid var(--edge-soft)}
-.bar i{display:block;height:100%;background:var(--brand);width:0;transition:width .7s cubic-bezier(.2,.8,.2,1)}
-.poll[aria-pressed="true"] .bar i{background:var(--hot)}
+.bar i{display:block;height:100%;background:color-mix(in srgb,var(--brand) 52%,#000);width:0;transition:width .7s cubic-bezier(.2,.8,.2,1)}
+.poll[aria-pressed="true"] .bar i{background:var(--brand)}
 .votenote{font-size:.82rem;color:var(--text-faint);margin-top:4px}
 
 /* ---- studio / log ---- */
@@ -455,7 +416,10 @@ section{scroll-margin-top:84px}
 .log p{font-size:.86rem;color:var(--text-dim)}
 
 /* ---- acquisitions ---- */
-.acq{background:var(--text);color:var(--bg)}
+.acq{--bg:#FFF2F1;background:#A8111E;color:var(--bg)}   /* --bg is re-pointed so every mix below reads light on red */
+.acq .btn--solid{background:var(--bg);color:#8E0C16;border-color:var(--bg)}
+.acq .btn{box-shadow:4px 4px 0 rgba(0,0,0,.5)}
+.acq .btn:hover{box-shadow:6px 6px 0 rgba(0,0,0,.5)}
 .acq .eyebrow{color:color-mix(in srgb,var(--bg) 62%,transparent)}
 .acq .eyebrow::after{background:color-mix(in srgb,var(--bg) 26%,transparent)}
 .acq .sechead p{color:color-mix(in srgb,var(--bg) 76%,transparent)}
@@ -471,7 +435,7 @@ section{scroll-margin-top:84px}
 .steps li::before{
   content:counter(s,decimal-leading-zero);
   font-family:"Martian Mono",monospace;font-size:.72rem;font-weight:600;
-  color:var(--brand);
+  color:color-mix(in srgb,var(--bg) 80%,transparent);
 }
 .steps h3{font-size:1.05rem}
 .steps p{font-size:.87rem;color:color-mix(in srgb,var(--bg) 72%,transparent)}
@@ -485,10 +449,10 @@ section{scroll-margin-top:84px}
 .acqgrid{display:grid;gap:34px;margin-bottom:40px}
 @media(min-width:900px){.acqgrid{grid-template-columns:1fr 1fr;gap:56px}}
 .offer{
-  border:2px solid var(--brand);border-radius:8px;padding:22px;
+  border:2px solid color-mix(in srgb,var(--bg) 55%,transparent);border-radius:8px;padding:22px;
   display:grid;gap:12px;
 }
-.offer .counter{color:var(--brand)}
+.offer .counter{color:var(--bg)}
 
 /* ---- contact ---- */
 .contact{display:grid;gap:34px}
@@ -535,7 +499,7 @@ section{scroll-margin-top:84px}
   border:2px solid var(--live);border-radius:8px;padding:18px;
   display:grid;gap:6px;background:color-mix(in srgb,var(--live) 10%,transparent);
 }
-.sent b{font-family:"Syne",sans-serif;font-weight:800;font-size:1.1rem}
+.sent b{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:1.1rem}
 .sent p{font-size:.88rem;color:var(--text-dim)}
 
 /* ---- footer ---- */
@@ -588,9 +552,6 @@ section{scroll-margin-top:84px}
       <a href="#contact">Contact</a>
     </nav>
     <span class="pill mono nav__meter"><i class="dot-live"></i><span data-bind="navVisits">0</span>&nbsp;visits</span>
-    <button class="iconbtn" id="themeBtn" type="button" aria-label="Switch colour theme" title="Switch theme">
-      <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M4.9 4.9l1.5 1.5M17.6 17.6l1.5 1.5M19.1 4.9l-1.5 1.5M6.4 17.6l-1.5 1.5"/></svg>
-    </button>
     <button class="iconbtn menu" id="menuBtn" type="button" aria-expanded="false" aria-controls="drawer" aria-label="Open menu">
       <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
     </button>
@@ -874,14 +835,14 @@ const STUDIO = {
   links: { group: "#", discord: "#", x: "#", roblox: "#" },
   /* Sample catalogue — replace every entry with your own games. */
   games: [
-    { name:"Rooftop Rivals", initials:"RR", genre:"PvP", status:"Flagship", blurb:"Round-based parkour duels across a city that keeps rebuilding itself between matches.", visits:41204880, live:612, favourites:486210, rating:94, c1:"#FF7A3D", c2:"#7A1FA2", pat:"rays" },
-    { name:"Barnyard Tycoon", initials:"BT", genre:"Tycoon", status:"Live", blurb:"Build the farm, automate the chores, then defend the harvest from the neighbours.", visits:28915340, live:402, favourites:331904, rating:91, c1:"#F5C518", c2:"#2F7D46", pat:"stripes" },
-    { name:"Emote Arena", initials:"EA", genre:"Social", status:"Updating", blurb:"A dance floor with a scoreboard. 250+ emotes, weekly themes, no combat anywhere.", visits:19447102, live:388, favourites:268455, rating:88, c1:"#FF4D9D", c2:"#4B2AC9", pat:"dots" },
-    { name:"Ridgeview High", initials:"RH", genre:"Roleplay", status:"Live", blurb:"Town roleplay with real jobs, player-run clubs, and a rumour system that never forgets.", visits:16120773, live:274, favourites:214880, rating:92, c1:"#33C9E8", c2:"#1B3A8C", pat:"grid" },
-    { name:"Slime Orchard", initials:"SO", genre:"Simulator", status:"Live", blurb:"Grow it, breed it, sell it. A pet simulator where the pets have opinions about you.", visits:9733418, live:156, favourites:132067, rating:90, c1:"#9BE15D", c2:"#12876A", pat:"arcs" },
-    { name:"The Long Hall", initials:"LH", genre:"Horror", status:"Seasonal", blurb:"Six players, one corridor, and a house that rearranges itself when nobody is looking.", visits:6301559, live:98, favourites:98442, rating:95, c1:"#6E5AA8", c2:"#171021", pat:"bars" },
-    { name:"Pit Crew Pro", initials:"PC", genre:"Racing", status:"Live", blurb:"You are not the driver. You are the four seconds that decide the race.", visits:4812904, live:121, favourites:71330, rating:87, c1:"#FF3B30", c2:"#241F2B", pat:"stripes" },
-    { name:"Nightline Metro", initials:"NM", genre:"Roleplay", status:"New", blurb:"Drive the last train of the night. Passengers, delays, and a timetable that judges you.", visits:1908662, live:89, favourites:40118, rating:93, c1:"#2FD9C5", c2:"#123A55", pat:"grid" }
+    { name:"Rooftop Rivals", initials:"RR", genre:"PvP", status:"Flagship", blurb:"Round-based parkour duels across a city that keeps rebuilding itself between matches.", visits:41204880, live:612, favourites:486210, rating:94, c1:"#1C0407", c2:"#E8202D", pat:"rays" },
+    { name:"Barnyard Tycoon", initials:"BT", genre:"Tycoon", status:"Live", blurb:"Build the farm, automate the chores, then defend the harvest from the neighbours.", visits:28915340, live:402, favourites:331904, rating:91, c1:"#120306", c2:"#B00E1C", pat:"stripes" },
+    { name:"Emote Arena", initials:"EA", genre:"Social", status:"Updating", blurb:"A dance floor with a scoreboard. 250+ emotes, weekly themes, no combat anywhere.", visits:19447102, live:388, favourites:268455, rating:88, c1:"#24060B", c2:"#FF4650", pat:"dots" },
+    { name:"Ridgeview High", initials:"RH", genre:"Roleplay", status:"Live", blurb:"Town roleplay with real jobs, player-run clubs, and a rumour system that never forgets.", visits:16120773, live:274, favourites:214880, rating:92, c1:"#0C0203", c2:"#8E0B16", pat:"grid" },
+    { name:"Slime Orchard", initials:"SO", genre:"Simulator", status:"Live", blurb:"Grow it, breed it, sell it. A pet simulator where the pets have opinions about you.", visits:9733418, live:156, favourites:132067, rating:90, c1:"#1A0407", c2:"#FF2E3F", pat:"arcs" },
+    { name:"The Long Hall", initials:"LH", genre:"Horror", status:"Seasonal", blurb:"Six players, one corridor, and a house that rearranges itself when nobody is looking.", visits:6301559, live:98, favourites:98442, rating:95, c1:"#080203", c2:"#6E0912", pat:"bars" },
+    { name:"Pit Crew Pro", initials:"PC", genre:"Racing", status:"Live", blurb:"You are not the driver. You are the four seconds that decide the race.", visits:4812904, live:121, favourites:71330, rating:87, c1:"#160305", c2:"#D3121F", pat:"stripes" },
+    { name:"Nightline Metro", initials:"NM", genre:"Roleplay", status:"New", blurb:"Drive the last train of the night. Passengers, delays, and a timetable that judges you.", visits:1908662, live:89, favourites:40118, rating:93, c1:"#0E0203", c2:"#C4101E", pat:"grid" }
   ],
   /* starting tallies for the spotlight poll */
   poll: { "Rooftop Rivals":412, "Ridgeview High":388, "The Long Hall":296, "Emote Arena":244 }
@@ -1085,20 +1046,9 @@ form.addEventListener("submit", async e => {
 });
 
 /* ================================================================
-   7. Chrome: theme, menu, scroll spy, reveals
+   7. Chrome: menu, scroll spy, reveals
    ================================================================ */
 const root = document.documentElement;
-const savedTheme = store.get("overbuilt.theme");
-if (savedTheme) root.setAttribute("data-theme", savedTheme);
-$("#themeBtn").addEventListener("click", () => {
-  const dark = root.getAttribute("data-theme")
-    ? root.getAttribute("data-theme") === "dark"
-    : matchMedia("(prefers-color-scheme: dark)").matches;
-  const next = dark ? "light" : "dark";
-  root.setAttribute("data-theme", next);
-  store.set("overbuilt.theme", next);
-  paintField();
-});
 
 const menuBtn = $("#menuBtn"), drawer = $("#drawer");
 const setMenu = open => { drawer.hidden = !open; menuBtn.setAttribute("aria-expanded", String(open)); };
@@ -1150,7 +1100,6 @@ function paintField(t = 0){
 }
 function loop(t){ paintField(t); requestAnimationFrame(loop); }
 addEventListener("resize", () => { sizeField(); paintField(performance.now()); });
-matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => paintField(performance.now()));
 
 /* ================================================================
    9. Go

@@ -603,8 +603,8 @@ section{scroll-margin-top:84px}
   <div class="wrap nav__in">
     <a class="mark" href="#top"><span class="mark__glyph"><i></i></span><span data-bind="name">OVERBUILT</span></a>
     <nav class="navlinks" aria-label="Primary">
-      <a href="#acquire">Acquisitions</a>
       <a href="#games">Our games</a>
+      <a href="#acquire">Acquisitions</a>
       <a href="#studio">Studio</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -614,8 +614,8 @@ section{scroll-margin-top:84px}
     </button>
   </div>
   <div class="drawer wrap" id="drawer" hidden>
-    <a href="#acquire">Acquisitions</a>
     <a href="#games">Our games</a>
+    <a href="#acquire">Acquisitions</a>
     <a href="#studio">Studio</a>
     <a href="#contact">Contact</a>
   </div>
@@ -665,6 +665,23 @@ section{scroll-margin-top:84px}
   </div>
 </section>
 
+<hr class="rule">
+<!-- ============================ GAMES ============================ -->
+<section class="band" id="games">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div>
+        <p class="eyebrow">The catalogue</p>
+        <h2>Our games</h2>
+        <p>PLACEHOLDER — one or two lines introducing your catalogue. Cards below are sorted by lifetime visits.</p>
+      </div>
+      <a class="btn btn--sm" href="#" data-bind="groupLink">Follow the group ↗</a>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Filter games by genre"></div>
+    <div class="games" id="gameGrid"></div>
+  </div>
+</section>
+
 <!-- ============================ ACQUISITIONS ============================ -->
 <section class="band acq" id="acquire">
   <div class="wrap">
@@ -704,23 +721,6 @@ section{scroll-margin-top:84px}
   </div>
 </section>
 
-<!-- ============================ GAMES ============================ -->
-<section class="band" id="games">
-  <div class="wrap">
-    <div class="sechead reveal">
-      <div>
-        <p class="eyebrow">The catalogue</p>
-        <h2>Our games</h2>
-        <p>PLACEHOLDER — one or two lines introducing your catalogue. Cards below are sorted by lifetime visits.</p>
-      </div>
-      <a class="btn btn--sm" href="#" data-bind="groupLink">Follow the group ↗</a>
-    </div>
-    <div class="filters" id="filters" role="group" aria-label="Filter games by genre"></div>
-    <div class="games" id="gameGrid"></div>
-  </div>
-</section>
-
-<hr class="rule">
 <!-- ============================ STUDIO ============================ -->
 <section class="band" id="studio">
   <div class="wrap">
@@ -830,8 +830,8 @@ section{scroll-margin-top:84px}
       <div>
         <h4>Explore</h4>
         <ul>
-          <li><a href="#acquire">Game acquisitions</a></li>
           <li><a href="#games">Our games</a></li>
+          <li><a href="#acquire">Game acquisitions</a></li>
           <li><a href="#studio">Studio</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -1084,7 +1084,7 @@ const spy = new IntersectionObserver(entries => {
       a.classList.toggle("is-on", a.getAttribute("href") === "#" + e.target.id));
   });
 }, { rootMargin: "-45% 0px -50% 0px" });
-["acquire", "games", "studio", "contact"].forEach(id => {
+["games", "acquire", "studio", "contact"].forEach(id => {
   const el = document.getElementById(id); if (el) spy.observe(el);
 });
 

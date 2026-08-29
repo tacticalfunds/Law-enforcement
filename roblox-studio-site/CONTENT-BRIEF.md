@@ -78,8 +78,6 @@ button on the catalogue.
 
 ## 3 · Game acquisitions
 
-*This is now the first section after the stats, so it carries the most weight.*
-
 **3.1 Opening paragraph** — what you offer a developer who wants to sell: what
 you take on, what stays theirs, how they get paid.
 > 
@@ -195,5 +193,5 @@ for players. Past updates only; upcoming events belong somewhere else.
 ## 6 · Anything else
 
 Sections you want cut, added, renamed, or reordered. The page currently runs:
-hero → stats → acquisitions → games → studio → contact.
+hero → stats → our games → acquisitions → studio → contact.
 > 

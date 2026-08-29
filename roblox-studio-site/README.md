@@ -19,8 +19,8 @@ lifetime visits, so the section's claim stays true as you add entries.
 | Hero | Studio pitch, two CTAs, and a live "playing right now" board |
 | Ticker | Scrolling marquee of every game and its lifetime visits |
 | Stats | Animated counters for visits, concurrents, experiences live, largest server |
-| Acquisitions | Criteria, deal shape, and a four-step process for sellers |
 | Our games | Filterable catalogue with generated cover art, per-game metrics |
+| Acquisitions | Criteria, deal shape, and a four-step process for sellers |
 | Studio | Values and a dated build log |
 | Contact | Validated enquiry form with an inquiry-type selector |
 

@@ -1,6 +1,12 @@
 # Site content brief
 
-Every blank below is a `PLACEHOLDER` currently sitting on the live site.
+> **Status:** the drafted answers in `CONTENT-BRIEF-DRAFT.md` are now live on the
+> site. This file stays as the checklist — use it to correct anything I wrote.
+> Still genuinely blank: **2.1** business email and **2.6–2.8** the three URLs.
+> Still my invention and safest to replace: **3.3–3.4**, **3.10**, **3.11**, **4.2**.
+> The build log (5.7) has been cut from the page.
+
+Every blank below was a `PLACEHOLDER` on the site.
 
 **How to use it:** type your answer on the `>` line under each prompt. You do
 not have to do all of it — answer what you know, send it back, and I will wire

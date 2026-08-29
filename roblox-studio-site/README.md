@@ -7,7 +7,7 @@ Cloudflare Pages) — there is no build step.
 Every line of studio-defining copy reads `PLACEHOLDER` with a short hint about
 what belongs there — studio name, tagline, values, build log, acquisition terms,
 process steps, contact details. Search the file for `PLACEHOLDER` to find all of
-them; there are 57. The `STUDIO.games` array holds four real games — where a
+them; there are 1. The `STUDIO.games` array holds four real games — where a
 number has not been supplied yet it is `null`, so the card renders an em dash
 and the totals skip it. Nothing on the page is a guess. The grid sorts itself by
 lifetime visits, so the section's claim stays true as you add entries.
@@ -21,7 +21,7 @@ lifetime visits, so the section's claim stays true as you add entries.
 | Stats | Animated counters for visits, concurrents, experiences live, largest server |
 | Our games | Filterable catalogue with generated cover art, per-game metrics |
 | Acquisitions | Criteria, deal shape, and a four-step process for sellers |
-| Studio | Values and a dated build log |
+| Studio | What the team stands for, in four values |
 | Contact | Validated enquiry form with an inquiry-type selector |
 
 `CONTENT-BRIEF.md` next to this file lists every placeholder as a fill-in

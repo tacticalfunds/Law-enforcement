@@ -7,7 +7,7 @@ Cloudflare Pages) — there is no build step.
 Every line of studio-defining copy reads `PLACEHOLDER` with a short hint about
 what belongs there — studio name, tagline, values, build log, acquisition terms,
 process steps, contact details. Search the file for `PLACEHOLDER` to find all of
-them; there are 58. The `STUDIO.games` array holds four real games — where a
+them; there are 57. The `STUDIO.games` array holds four real games — where a
 number has not been supplied yet it is `null`, so the card renders an em dash
 and the totals skip it. Nothing on the page is a guess. The grid sorts itself by
 lifetime visits, so the section's claim stays true as you add entries.
@@ -19,11 +19,13 @@ lifetime visits, so the section's claim stays true as you add entries.
 | Hero | Studio pitch, two CTAs, and a live "playing right now" board |
 | Ticker | Scrolling marquee of every game and its lifetime visits |
 | Stats | Animated counters for visits, concurrents, experiences live, largest server |
-| Our games | Filterable catalogue with generated cover art, per-game metrics |
-| Spotlight vote | Community poll with live bars, a reset countdown, one vote per browser |
-| Studio | Values and a dated build log |
 | Acquisitions | Criteria, deal shape, and a four-step process for sellers |
+| Our games | Filterable catalogue with generated cover art, per-game metrics |
+| Studio | Values and a dated build log |
 | Contact | Validated enquiry form with an inquiry-type selector |
+
+`CONTENT-BRIEF.md` next to this file lists every placeholder as a fill-in
+prompt — answer what you can and send it back.
 
 ## Making it yours
 
@@ -81,13 +83,9 @@ Two functions are deliberately left as stubs:
 - `submitEnquiry(data)` resolves immediately and the form says so. Point it at
   your inbox, a Discord webhook or a form service and it posts for real.
 
-The spotlight vote is stored in `localStorage`, so it is per-browser, not a
-shared tally. Swap `paintPolls()` for a fetch against your own counter if you
-need real results.
-
 ## Accessibility and motion
 
-Keyboard focus is visible throughout, the poll and filters are real buttons with
+Keyboard focus is visible throughout, the genre filters are real buttons with
 `aria-pressed`, form errors are announced next to their fields, and everything
 animated — counters, reveals, ticker, the halftone background — stops under
 `prefers-reduced-motion: reduce`.

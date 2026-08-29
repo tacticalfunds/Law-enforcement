@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="A Roblox game studio website template: live stats, game catalogue, spotlight vote, acquisitions pitch and contact form.">
+<meta name="description" content="A Roblox game studio website template: live stats, game catalogue, acquisitions pitch and contact form.">
 <style>
   :root{color-scheme:dark}
   body{margin:0}
@@ -363,41 +363,6 @@ section{scroll-margin-top:84px}
   font-variant-numeric:tabular-nums;
 }
 
-/* ---- vote ---- */
-.vote{display:grid;gap:24px;padding:24px}
-@media(min-width:900px){.vote{grid-template-columns:.9fr 1.1fr;gap:44px;padding:34px}}
-.clock{
-  display:inline-flex;gap:8px;margin-top:16px;
-}
-.clock div{
-  min-width:56px;padding:8px 6px;text-align:center;
-  border:2px solid var(--edge-soft);border-radius:6px;background:var(--bg);
-}
-.clock b{
-  display:block;font-family:"Martian Mono",monospace;font-size:1.05rem;
-  font-variant-numeric:tabular-nums;line-height:1.2;
-}
-.clock small{
-  font-family:"Martian Mono",monospace;font-size:.48rem;font-weight:600;
-  text-transform:uppercase;letter-spacing:.1em;color:var(--text-faint);
-}
-.polls{display:grid;gap:10px;margin:0;padding:0;list-style:none}
-.poll{
-  width:100%;text-align:left;cursor:pointer;background:var(--bg);
-  border:2px solid var(--edge-soft);border-radius:8px;padding:12px 14px;
-  color:inherit;font:inherit;display:grid;gap:9px;
-  transition:border-color .15s,transform .12s;
-}
-.poll:hover{border-color:var(--edge)}
-.poll[aria-pressed="true"]{border-color:var(--hot);background:var(--hot-soft)}
-.poll__top{display:flex;justify-content:space-between;align-items:baseline;gap:12px}
-.poll__name{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:1rem}
-.poll__pct{font-family:"Martian Mono",monospace;font-size:.76rem;font-variant-numeric:tabular-nums;color:var(--text-dim)}
-.bar{height:9px;border-radius:999px;background:var(--surface-alt);overflow:hidden;border:1px solid var(--edge-soft)}
-.bar i{display:block;height:100%;background:color-mix(in srgb,var(--brand) 52%,#000);width:0;transition:width .7s cubic-bezier(.2,.8,.2,1)}
-.poll[aria-pressed="true"] .bar i{background:var(--brand)}
-.votenote{font-size:.82rem;color:var(--text-faint);margin-top:4px}
-
 /* ---- studio / log ---- */
 .two{display:grid;gap:34px}
 @media(min-width:900px){.two{grid-template-columns:1fr 1fr;gap:56px}}
@@ -638,10 +603,9 @@ section{scroll-margin-top:84px}
   <div class="wrap nav__in">
     <a class="mark" href="#top"><span class="mark__glyph"><i></i></span><span data-bind="name">OVERBUILT</span></a>
     <nav class="navlinks" aria-label="Primary">
-      <a href="#games">Our games</a>
-      <a href="#spotlight">Spotlight vote</a>
-      <a href="#studio">Studio</a>
       <a href="#acquire">Acquisitions</a>
+      <a href="#games">Our games</a>
+      <a href="#studio">Studio</a>
       <a href="#contact">Contact</a>
     </nav>
     <span class="pill mono nav__meter"><i class="dot-live"></i><span data-bind="navVisits">0</span>&nbsp;visits</span>
@@ -650,10 +614,9 @@ section{scroll-margin-top:84px}
     </button>
   </div>
   <div class="drawer wrap" id="drawer" hidden>
-    <a href="#games">Our games</a>
-    <a href="#spotlight">Spotlight vote</a>
-    <a href="#studio">Studio</a>
     <a href="#acquire">Acquisitions</a>
+    <a href="#games">Our games</a>
+    <a href="#studio">Studio</a>
     <a href="#contact">Contact</a>
   </div>
 </header>
@@ -702,79 +665,6 @@ section{scroll-margin-top:84px}
   </div>
 </section>
 
-<hr class="rule">
-<!-- ============================ GAMES ============================ -->
-<section class="band" id="games">
-  <div class="wrap">
-    <div class="sechead reveal">
-      <div>
-        <p class="eyebrow">The catalogue</p>
-        <h2>Our games</h2>
-        <p>PLACEHOLDER — one or two lines introducing your catalogue. Cards below are sorted by lifetime visits.</p>
-      </div>
-      <a class="btn btn--sm" href="#" data-bind="groupLink">Follow the group ↗</a>
-    </div>
-    <div class="filters" id="filters" role="group" aria-label="Filter games by genre"></div>
-    <div class="games" id="gameGrid"></div>
-  </div>
-</section>
-
-<hr class="rule">
-<!-- ============================ SPOTLIGHT VOTE ============================ -->
-<section class="band" id="spotlight">
-  <div class="wrap">
-    <div class="card vote reveal">
-      <div>
-        <p class="eyebrow eyebrow--plain">Community pick</p>
-        <h2 style="font-size:clamp(1.8rem,4.4vw,2.6rem);margin-top:10px">Vote for next week's spotlight</h2>
-        <p style="color:var(--text-dim);margin-top:12px;max-width:38ch">PLACEHOLDER — say what the winning game actually gets: a banner, a stream, an event, a drop. One vote per player, resets Monday.</p>
-        <div class="clock" id="clock" aria-label="Time until voting resets">
-          <div><b data-c="d">0</b><small>days</small></div>
-          <div><b data-c="h">00</b><small>hrs</small></div>
-          <div><b data-c="m">00</b><small>min</small></div>
-          <div><b data-c="s">00</b><small>sec</small></div>
-        </div>
-      </div>
-      <div>
-        <ul class="polls" id="polls"></ul>
-        <p class="votenote" id="voteNote">Pick one — your choice is remembered on this device.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<hr class="rule">
-<!-- ============================ STUDIO ============================ -->
-<section class="band" id="studio">
-  <div class="wrap">
-    <div class="sechead reveal">
-      <div>
-        <p class="eyebrow">Who we are</p>
-        <h2>PLACEHOLDER — your studio in five words</h2>
-        <p>PLACEHOLDER — how the team works, who is on it, and what you refuse to do.</p>
-      </div>
-    </div>
-    <div class="two">
-      <ul class="values reveal">
-        <li><span class="k">01</span><div><h3>PLACEHOLDER — value 01</h3><p>PLACEHOLDER — one or two sentences on how this shows up in the work players actually see.</p></div></li>
-        <li><span class="k">02</span><div><h3>PLACEHOLDER — value 02</h3><p>PLACEHOLDER — one or two sentences on how this shows up in the work players actually see.</p></div></li>
-        <li><span class="k">03</span><div><h3>PLACEHOLDER — value 03</h3><p>PLACEHOLDER — one or two sentences on how this shows up in the work players actually see.</p></div></li>
-        <li><span class="k">04</span><div><h3>PLACEHOLDER — value 04</h3><p>PLACEHOLDER — one or two sentences on how this shows up in the work players actually see.</p></div></li>
-      </ul>
-      <div class="reveal">
-        <p class="eyebrow">Build log</p>
-        <ul class="log" style="margin-top:14px">
-          <li><time>PLACEHOLDER</time><div><b>PLACEHOLDER — update title</b><p>PLACEHOLDER — what shipped and what changed for players.</p></div></li>
-          <li><time>PLACEHOLDER</time><div><b>PLACEHOLDER — update title</b><p>PLACEHOLDER — what shipped and what changed for players.</p></div></li>
-          <li><time>PLACEHOLDER</time><div><b>PLACEHOLDER — update title</b><p>PLACEHOLDER — what shipped and what changed for players.</p></div></li>
-          <li><time>PLACEHOLDER</time><div><b>PLACEHOLDER — update title</b><p>PLACEHOLDER — what shipped and what changed for players.</p></div></li>
-          <li><time>PLACEHOLDER</time><div><b>PLACEHOLDER — update title</b><p>PLACEHOLDER — what shipped and what changed for players.</p></div></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ============================ ACQUISITIONS ============================ -->
 <section class="band acq" id="acquire">
   <div class="wrap">
@@ -814,6 +704,55 @@ section{scroll-margin-top:84px}
   </div>
 </section>
 
+<!-- ============================ GAMES ============================ -->
+<section class="band" id="games">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div>
+        <p class="eyebrow">The catalogue</p>
+        <h2>Our games</h2>
+        <p>PLACEHOLDER — one or two lines introducing your catalogue. Cards below are sorted by lifetime visits.</p>
+      </div>
+      <a class="btn btn--sm" href="#" data-bind="groupLink">Follow the group ↗</a>
+    </div>
+    <div class="filters" id="filters" role="group" aria-label="Filter games by genre"></div>
+    <div class="games" id="gameGrid"></div>
+  </div>
+</section>
+
+<hr class="rule">
+<!-- ============================ STUDIO ============================ -->
+<section class="band" id="studio">
+  <div class="wrap">
+    <div class="sechead reveal">
+      <div>
+        <p class="eyebrow">Who we are</p>
+        <h2>PLACEHOLDER — your studio in five words</h2>
+        <p>PLACEHOLDER — how the team works, who is on it, and what you refuse to do.</p>
+      </div>
+    </div>
+    <div class="two">
+      <ul class="values reveal">
+        <li><span class="k">01</span><div><h3>PLACEHOLDER — value 01</h3><p>PLACEHOLDER — one or two sentences on how this shows up in the work players actually see.</p></div></li>
+        <li><span class="k">02</span><div><h3>PLACEHOLDER — value 02</h3><p>PLACEHOLDER — one or two sentences on how this shows up in the work players actually see.</p></div></li>
+        <li><span class="k">03</span><div><h3>PLACEHOLDER — value 03</h3><p>PLACEHOLDER — one or two sentences on how this shows up in the work players actually see.</p></div></li>
+        <li><span class="k">04</span><div><h3>PLACEHOLDER — value 04</h3><p>PLACEHOLDER — one or two sentences on how this shows up in the work players actually see.</p></div></li>
+      </ul>
+      <div class="reveal">
+        <p class="eyebrow">Build log</p>
+        <ul class="log" style="margin-top:14px">
+          <li><time>PLACEHOLDER</time><div><b>PLACEHOLDER — update title</b><p>PLACEHOLDER — what shipped and what changed for players.</p></div></li>
+          <li><time>PLACEHOLDER</time><div><b>PLACEHOLDER — update title</b><p>PLACEHOLDER — what shipped and what changed for players.</p></div></li>
+          <li><time>PLACEHOLDER</time><div><b>PLACEHOLDER — update title</b><p>PLACEHOLDER — what shipped and what changed for players.</p></div></li>
+          <li><time>PLACEHOLDER</time><div><b>PLACEHOLDER — update title</b><p>PLACEHOLDER — what shipped and what changed for players.</p></div></li>
+          <li><time>PLACEHOLDER</time><div><b>PLACEHOLDER — update title</b><p>PLACEHOLDER — what shipped and what changed for players.</p></div></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="rule">
 <!-- ============================ CONTACT ============================ -->
 <section class="band" id="contact">
   <div class="wrap contact">
@@ -891,10 +830,9 @@ section{scroll-margin-top:84px}
       <div>
         <h4>Explore</h4>
         <ul>
-          <li><a href="#games">Our games</a></li>
-          <li><a href="#spotlight">Spotlight vote</a></li>
-          <li><a href="#studio">Studio</a></li>
           <li><a href="#acquire">Game acquisitions</a></li>
+          <li><a href="#games">Our games</a></li>
+          <li><a href="#studio">Studio</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
       </div>
@@ -963,9 +901,6 @@ const STUDIO = {
       c1:"#120306", c2:"#B00E1C", pat:"stripes"
     }
   ],
-  /* Spotlight tallies. Votes are per-browser, so these start at zero —
-     seed them from your own counter if you run one. */
-  poll: { "Paint And SEEK!":0, "Monkeys VS Walls":0, "+1 Warrior Evolution":0, "Boxing Club":0 }
 };
 
 /* ================================================================
@@ -977,10 +912,6 @@ const fmt = n => Math.round(n).toLocaleString("en-US");
 const compact = n => n >= 1e6 ? (n / 1e6).toFixed(1) + "M" : n >= 1e3 ? Math.round(n / 1e3) + "k" : String(n);
 const known = (v, render = String) => v == null ? "—" : render(v);   /* — until a real number is supplied */
 const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
-const store = {
-  get(k){ try { return localStorage.getItem(k); } catch { return null; } },
-  set(k, v){ try { localStorage.setItem(k, v); } catch { /* private mode */ } }
-};
 const totals = () => ({
   totalVisits:   STUDIO.games.reduce((a, g) => a + (g.visits || 0), 0),
   livePlayers:   STUDIO.games.reduce((a, g) => a + (g.live || 0), 0),
@@ -1101,51 +1032,7 @@ const counters = new IntersectionObserver((entries, obs) => {
 $$("[data-count]").forEach(el => counters.observe(el));
 
 /* ================================================================
-   5. Spotlight vote — one choice per browser, kept in localStorage
-   ================================================================ */
-const VOTE_KEY = "overbuilt.spotlight.v1";
-let myVote = store.get(VOTE_KEY);
-
-function paintPolls(){
-  const tally = { ...STUDIO.poll };
-  if (myVote && tally[myVote] != null) tally[myVote] += 1;
-  const sum = Object.values(tally).reduce((a, b) => a + b, 0);
-  $("#polls").innerHTML = Object.entries(tally).map(([name, n]) => {
-    const pct = sum ? Math.round((n / sum) * 100) : 0;
-    return `<li><button class="poll" type="button" aria-pressed="${myVote === name}" data-vote="${name}">
-      <span class="poll__top"><span class="poll__name">${name}</span>
-      <span class="poll__pct">${pct}% · ${fmt(n)}</span></span>
-      <span class="bar"><i style="width:${pct}%"></i></span>
-    </button></li>`;
-  }).join("");
-  $("#voteNote").textContent = myVote
-    ? `Locked in for ${myVote}. Tap another game to change it.`
-    : "Pick one — your choice is remembered on this device.";
-}
-$("#polls").addEventListener("click", e => {
-  const b = e.target.closest("[data-vote]"); if (!b) return;
-  myVote = b.dataset.vote === myVote ? null : b.dataset.vote;
-  if (myVote) store.set(VOTE_KEY, myVote); else store.set(VOTE_KEY, "");
-  paintPolls();
-});
-
-/* countdown to Monday 00:00 local time */
-function paintClock(){
-  const now = new Date();
-  const next = new Date(now);
-  next.setHours(0, 0, 0, 0);
-  next.setDate(now.getDate() + ((8 - now.getDay()) % 7 || 7));
-  let left = Math.max(0, next - now) / 1000;
-  const d = Math.floor(left / 86400); left -= d * 86400;
-  const h = Math.floor(left / 3600);  left -= h * 3600;
-  const m = Math.floor(left / 60);
-  const s = Math.floor(left - m * 60);
-  const set = (k, v, pad) => { const el = $(`#clock [data-c="${k}"]`); if (el) el.textContent = pad ? String(v).padStart(2, "0") : v; };
-  set("d", d); set("h", h, 1); set("m", m, 1); set("s", s, 1);
-}
-
-/* ================================================================
-   6. Contact form — validates here, sends nowhere yet
+   5. Contact form — validates here, sends nowhere yet
    ================================================================ */
 function submitEnquiry(data){
   /* Wire this up: POST to your own endpoint, Discord webhook or form service.
@@ -1180,7 +1067,7 @@ form.addEventListener("submit", async e => {
 });
 
 /* ================================================================
-   7. Chrome: menu, scroll spy, reveals
+   6. Chrome: menu, scroll spy, reveals
    ================================================================ */
 const root = document.documentElement;
 
@@ -1197,7 +1084,7 @@ const spy = new IntersectionObserver(entries => {
       a.classList.toggle("is-on", a.getAttribute("href") === "#" + e.target.id));
   });
 }, { rootMargin: "-45% 0px -50% 0px" });
-["games", "spotlight", "studio", "acquire", "contact"].forEach(id => {
+["acquire", "games", "studio", "contact"].forEach(id => {
   const el = document.getElementById(id); if (el) spy.observe(el);
 });
 
@@ -1207,7 +1094,7 @@ const reveals = new IntersectionObserver((entries, obs) => {
 $$(".reveal").forEach(el => calm ? el.classList.add("in") : reveals.observe(el));
 
 /* ================================================================
-   8. Ambient field — a diffraction pattern: dot size and hue both
+   7. Ambient field — a diffraction pattern: dot size and hue both
       track the same wave, so the grid splits light the way foil does
    ================================================================ */
 const cv = $("#field"), ctx = cv.getContext("2d");
@@ -1267,13 +1154,10 @@ if (!calm){
 addEventListener("resize", () => { sizeField(); paintField(performance.now()); });
 
 /* ================================================================
-   9. Go
+   8. Go
    ================================================================ */
 sizeField();
 paintLive();
-paintPolls();
-paintClock();
-setInterval(paintClock, 1000);
 setInterval(refreshLive, 30000);
 if (calm) paintField(0); else requestAnimationFrame(loop);
 </script>

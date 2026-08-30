@@ -9,14 +9,17 @@ It has no dependencies, so there is nothing to install and nothing to break.
 1. **railway.app → New Project → Deploy from GitHub repo** and pick
    `tacticalfunds/law-enforcement`.
 
-2. **Set the root directory.** This is the step people miss. The repository has
-   other projects in it, so without this Railway tries to build the wrong thing.
+2. **Set the branch.** This is the one that matters. Settings → Source → Branch
+   → `claude/roblox-studio-website-oxu45k`.
 
-   Service → **Settings → Source → Root Directory** → `roblox-studio-site`
+   The repository's default branch is `claude/plate-reader-code-3lwh5j`, which
+   contains no website at all. Left alone, Railway builds that and fails with
+   "Railpack could not determine how to build the app", listing only
+   `plate-reader/` as the app contents.
 
-3. **Set the branch.** Settings → Source → Branch. The site currently lives on
-   `claude/roblox-studio-website-oxu45k`. Point Railway at that branch, or merge
-   it into your default branch and point at that instead.
+3. **Root directory is optional.** The root `package.json` on the site branch
+   starts the server for you. Setting Settings → Source → Root Directory to
+   `roblox-studio-site` also works if you prefer the service scoped to the site.
 
 4. **Generate a domain.** Settings → Networking → **Generate Domain**. You get a
    `*.up.railway.app` URL. Railway detects the listening port on its own; you do
@@ -48,9 +51,8 @@ Then open http://localhost:3000. Same code path Railway runs.
 
 ## If a deploy fails
 
-- **Build succeeds, page 404s** — the root directory is not set. See step 2.
-- **"No start command found"** — Railway is building the repository root, not
-  `roblox-studio-site`. Same fix.
+- **"Railpack could not determine how to build the app"**, with `plate-reader/`
+  listed as the app contents — Railway is on the default branch. See step 2.
 - **Deploy crashes immediately** — check the deploy logs for the line
   `Serving … on port …`. If it is missing, the container never reached
   `server.js`; if it is there, the failure is downstream, usually the domain not

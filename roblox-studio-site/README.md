@@ -21,7 +21,7 @@ lifetime visits, so the section's claim stays true as you add entries.
 | Stats | Animated counters for visits, concurrents, experiences live, largest server |
 | Our games | Filterable catalogue with generated cover art, per-game metrics |
 | Acquisitions | What we look for, and a three-step process for sellers |
-| Contact | Validated enquiry form with an inquiry-type selector |
+| Contact | A single route: the studio Discord |
 
 `CONTENT-BRIEF.md` next to this file lists every placeholder as a fill-in
 prompt — answer what you can and send it back.
@@ -80,8 +80,8 @@ Two functions are deliberately left as stubs:
   Replace its body with a call to the Roblox Games API
   (`games/v1/games?universeIds=…`) — through your own proxy, since Roblox does
   not send CORS headers for browser requests.
-- `submitEnquiry(data)` resolves immediately and the form says so. Point it at
-  your inbox, a Discord webhook or a form service and it posts for real.
+There is no contact form: the Discord invite is the only route in, so there is
+no endpoint to wire up.
 
 ## Accessibility and motion
 

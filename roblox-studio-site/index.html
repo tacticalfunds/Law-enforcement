@@ -403,40 +403,39 @@ section{scroll-margin-top:84px}
 }
 .deets dd{margin:0;font-weight:700}
 .deets a{color:var(--hot)}
-.form{padding:24px;display:grid;gap:16px}
-@media(min-width:600px){.form{padding:30px}}
-.f2{display:grid;gap:16px}
-@media(min-width:640px){.f2{grid-template-columns:1fr 1fr}}
-.field{display:grid;gap:6px}
-.field label{
-  font-family:"Martian Mono",monospace;font-size:.58rem;font-weight:600;
-  text-transform:uppercase;letter-spacing:.12em;color:var(--text-dim);
+.join{
+  position:relative;overflow:hidden;isolation:isolate;
+  display:grid;place-items:center;align-content:center;gap:12px;
+  min-height:360px;padding:44px 24px;text-align:center;text-decoration:none;
+  border:2px solid var(--edge);border-radius:8px;
+  background:
+    radial-gradient(120% 90% at 50% 12%,rgba(216,18,31,.30),transparent 62%),
+    var(--surface);
+  box-shadow:5px 5px 0 var(--lift);
+  transition:transform .16s ease,box-shadow .16s ease;
 }
-.field input,.field select,.field textarea{
-  font:inherit;font-size:.95rem;color:var(--text);
-  background:var(--field);border:2px solid var(--edge-soft);border-radius:7px;
-  padding:12px 13px;width:100%;transition:border-color .15s;
+.join:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--lift)}
+.join>*{position:relative;z-index:1}
+/* concentric rings breaking outward — the studio putting out a signal */
+.join__rings{position:absolute;inset:0;z-index:0;display:grid;place-items:center}
+.join__rings i{
+  position:absolute;width:130px;height:130px;border-radius:50%;
+  border:2px solid var(--hot);opacity:0;
+  animation:signal 4.2s cubic-bezier(.2,.7,.3,1) infinite;
 }
-.field textarea{min-height:132px;resize:vertical}
-.field select{appearance:none;cursor:pointer;
-  background-image:linear-gradient(45deg,transparent 50%,currentColor 50%),linear-gradient(135deg,currentColor 50%,transparent 50%);
-  background-position:calc(100% - 20px) 55%,calc(100% - 14px) 55%;
-  background-size:6px 6px,6px 6px;background-repeat:no-repeat;padding-right:42px;
+.join__rings i:nth-child(2){animation-delay:1.4s}
+.join__rings i:nth-child(3){animation-delay:2.8s}
+@keyframes signal{
+  0%{transform:scale(.55);opacity:.5}
+  100%{transform:scale(3.6);opacity:0}
 }
-.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--hot);outline:none}
-.field .err{
-  font-family:"Martian Mono",monospace;font-size:.58rem;font-weight:600;
-  color:var(--hot);letter-spacing:.04em;
+.join__glyph{width:62px;height:62px;fill:var(--text)}
+.join__label{
+  font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:800;
+  font-size:clamp(1.4rem,3.4vw,1.9rem);letter-spacing:-.015em;
 }
-.field [aria-invalid="true"]{border-color:var(--hot)}
-.formfoot{display:flex;flex-wrap:wrap;gap:14px;align-items:center;justify-content:space-between}
-.formfoot small{font-size:.76rem;color:var(--text-faint);max-width:34ch}
-.sent{
-  border:2px solid var(--live);border-radius:8px;padding:18px;
-  display:grid;gap:6px;background:color-mix(in srgb,var(--live) 10%,transparent);
-}
-.sent b{font-family:"Archivo","Helvetica Neue",Arial,sans-serif;font-weight:800;font-size:1.1rem}
-.sent p{font-size:.88rem;color:var(--text-dim)}
+.join__handle{font-size:.74rem;color:var(--hot);letter-spacing:.02em}
+.join__note{font-size:.82rem;color:var(--text-dim);max-width:26ch}
 
 /* ---- footer ---- */
 .foot{border-top:2px solid var(--edge);padding:44px 0 34px}
@@ -657,52 +656,14 @@ section{scroll-margin-top:84px}
           <dd><a data-bind="discord" href="#" target="_blank" rel="noopener noreferrer">discord.gg/sVCdMPAEF</a></dd>
         </div>
       </dl>
-      <a class="btn btn--solid" data-bind="discord" href="#" target="_blank" rel="noopener noreferrer" style="margin-top:22px">Join the Discord</a>
     </div>
-    <form class="card form reveal" id="contactForm" novalidate>
-      <div class="f2">
-        <div class="field">
-          <label for="f-name">Your name</label>
-          <input id="f-name" name="name" type="text" autocomplete="name" placeholder="Ada Nakamura">
-          <span class="err" id="e-name" hidden></span>
-        </div>
-        <div class="field">
-          <label for="f-email">Email</label>
-          <input id="f-email" name="email" type="email" autocomplete="email" placeholder="you@studio.com">
-          <span class="err" id="e-email" hidden></span>
-        </div>
-      </div>
-      <div class="f2">
-        <div class="field">
-          <label for="f-type">What is this about?</label>
-          <select id="f-type" name="type">
-            <option>Selling my game</option>
-            <option>Publishing partnership</option>
-            <option>Developer application</option>
-            <option>Brand or press</option>
-            <option>Something else</option>
-          </select>
-        </div>
-        <div class="field">
-          <label for="f-link">Game or portfolio link</label>
-          <input id="f-link" name="link" type="text" placeholder="roblox.com/games/…">
-        </div>
-      </div>
-      <div class="field">
-        <label for="f-msg">Message</label>
-        <textarea id="f-msg" name="message" placeholder="Tell us what you built, how it is performing, and what you want to happen next."></textarea>
-        <span class="err" id="e-msg" hidden></span>
-      </div>
-      <div class="formfoot">
-        <button class="btn btn--hot" type="submit">Send it over</button>
-        <small>This form is not wired to a server yet — the Discord is the quickest route.</small>
-      </div>
-      <div class="sent" id="sent" hidden>
-        <b>Looks good — but nothing was sent yet.</b>
-        <p id="sentBody"></p>
-        <p><a class="btn btn--sm" data-bind="discord" href="#" target="_blank" rel="noopener noreferrer">Bring it to the Discord</a></p>
-      </div>
-    </form>
+    <a class="join reveal" data-bind="discord" href="#" target="_blank" rel="noopener noreferrer">
+      <span class="join__rings" aria-hidden="true"><i></i><i></i><i></i></span>
+      <svg class="join__glyph" viewBox="0 0 24 24" aria-hidden="true"><path d="M20.317 4.37a19.79 19.79 0 0 0-4.885-1.515.074.074 0 0 0-.079.037c-.21.375-.444.865-.608 1.25a18.27 18.27 0 0 0-5.487 0 12.64 12.64 0 0 0-.617-1.25.077.077 0 0 0-.079-.037A19.736 19.736 0 0 0 3.677 4.37a.07.07 0 0 0-.032.027C.533 9.046-.319 13.58.099 18.058a.082.082 0 0 0 .031.056 19.9 19.9 0 0 0 5.993 3.03.078.078 0 0 0 .084-.028c.462-.63.874-1.295 1.226-1.994a.076.076 0 0 0-.041-.106 13.1 13.1 0 0 1-1.872-.892.077.077 0 0 1-.008-.128c.126-.094.252-.192.372-.291a.074.074 0 0 1 .078-.011c3.928 1.793 8.18 1.793 12.061 0a.074.074 0 0 1 .079.01c.12.099.246.198.373.292a.077.077 0 0 1-.007.128c-.598.349-1.22.65-1.873.891a.077.077 0 0 0-.04.107c.36.698.772 1.362 1.225 1.993a.076.076 0 0 0 .084.029 19.84 19.84 0 0 0 6.002-3.03.077.077 0 0 0 .032-.055c.5-5.177-.838-9.674-3.549-13.66a.06.06 0 0 0-.031-.029zM8.02 15.331c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.211 0 2.176 1.095 2.157 2.42 0 1.332-.956 2.418-2.157 2.418zm7.975 0c-1.183 0-2.157-1.086-2.157-2.419 0-1.333.955-2.419 2.157-2.419 1.21 0 2.176 1.095 2.157 2.42 0 1.332-.946 2.418-2.157 2.418z"/></svg>
+      <span class="join__label">Join the Discord</span>
+      <span class="join__handle mono">discord.gg/sVCdMPAEF</span>
+      <span class="join__note">Acquisitions, partnerships and everything else</span>
+    </a>
   </div>
 </section>
 </main>
@@ -965,42 +926,7 @@ const counters = new IntersectionObserver((entries, obs) => {
 $$("[data-count]").forEach(el => counters.observe(el));
 
 /* ================================================================
-   5. Contact form — validates here, sends nowhere yet
-   ================================================================ */
-function submitEnquiry(data){
-  /* Wire this up: POST to your own endpoint, Discord webhook or form service.
-     return fetch("/api/enquiries", { method:"POST", body: JSON.stringify(data) }); */
-  return Promise.resolve(data);
-}
-const form = $("#contactForm");
-form.addEventListener("submit", async e => {
-  e.preventDefault();
-  const checks = [
-    ["f-name", "e-name", v => v.trim().length > 1, "Tell us what to call you."],
-    ["f-email", "e-email", v => /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v.trim()), "That email address is not quite right."],
-    ["f-msg", "e-msg", v => v.trim().length > 19, "A few more details, please — 20 characters minimum."]
-  ];
-  let firstBad = null;
-  for (const [id, errId, ok, msg] of checks){
-    const input = $("#" + id), err = $("#" + errId), good = ok(input.value);
-    input.setAttribute("aria-invalid", String(!good));
-    err.hidden = good;
-    err.textContent = good ? "" : msg;
-    if (!good && !firstBad) firstBad = input;
-  }
-  if (firstBad) { firstBad.focus(); return; }
-
-  const data = Object.fromEntries(new FormData(form).entries());
-  await submitEnquiry(data);
-  const sent = $("#sent");
-  $("#sentBody").textContent =
-    `Checked over your “${data.type}” message from ${data.email}. This form has no server behind it yet — the fastest way to reach us is the Discord.`;
-  sent.hidden = false;
-  sent.scrollIntoView({ block: "nearest", behavior: calm ? "auto" : "smooth" });
-});
-
-/* ================================================================
-   6. Chrome: menu, scroll spy, reveals
+   5. Chrome: menu, scroll spy, reveals
    ================================================================ */
 const root = document.documentElement;
 
@@ -1027,7 +953,7 @@ const reveals = new IntersectionObserver((entries, obs) => {
 $$(".reveal").forEach(el => calm ? el.classList.add("in") : reveals.observe(el));
 
 /* ================================================================
-   7. Ambient field — a diffraction pattern: dot size and hue both
+   6. Ambient field — a diffraction pattern: dot size and hue both
       track the same wave, so the grid splits light the way foil does
    ================================================================ */
 const cv = $("#field"), ctx = cv.getContext("2d");
@@ -1087,7 +1013,7 @@ if (!calm){
 addEventListener("resize", () => { sizeField(); paintField(performance.now()); });
 
 /* ================================================================
-   8. Go
+   7. Go
    ================================================================ */
 sizeField();
 paintLive();

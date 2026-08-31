@@ -593,8 +593,8 @@ section{scroll-margin-top:84px}
     <div class="statgrid">
       <div class="card stat reveal"><span class="stat__l">Total visits</span><span class="stat__n" data-count="totalVisits">0</span><span class="stat__note">Across all published places</span></div>
       <div class="card stat reveal"><span class="stat__l">Playing now</span><span class="stat__n" style="color:var(--live)" data-count="livePlayers">0</span><span class="stat__note">Concurrent, all servers</span></div>
+      <div class="card stat reveal"><span class="stat__l">Favourites</span><span class="stat__n" data-count="favourites">0</span><span class="stat__note">Saved by players</span></div>
       <div class="card stat reveal"><span class="stat__l">Experiences live</span><span class="stat__n" data-count="experiences">0</span><span class="stat__note">Published and playable now</span></div>
-      <div class="card stat reveal"><span class="stat__l">Largest server</span><span class="stat__n" data-count="biggestServer">0</span><span class="stat__note">Players in a single round</span></div>
     </div>
   </div>
 </section>
@@ -768,62 +768,65 @@ const STUDIO = {
   },
   /* Live catalogue. Visits / playing / maxPlayers come straight from each
      game's Roblox page — refreshLive() is where you point them at the API. */
-  /* null on any number means "not supplied yet": the card shows an em dash
-     and the totals skip it, so nothing here is ever a guess. Same for a
-     missing blurb, creator or genre — the card simply omits that line. */
+  /* Figures as Roblox reports them on each game's page; its visit counts are
+     rounded, so these are floors rather than exact totals. A null anywhere
+     means not supplied, and the card shows an em dash instead of a guess. */
   games: [
     {
-      name:"Paint And SEEK!", initials:"PS", genre:"Hide & seek", status:"Live",
+      name:"Paint And SEEK!", initials:"PS", genre:"Survival", status:"Live",
       creator:"Blend In Or Die",
       url:"https://www.roblox.com/games/78724049937437/Paint-And-SEEK",
       blurb:"Change your colour, blend into the map and hide from the Seekers. Hiders paint and hide, Seekers find them all before the clock runs out.",
-      visits:104569069, live:281, maxPlayers:14,
+      visits:104600000, live:258, favourites:152676, maxPlayers:14,
       img:THUMBS.paint, c1:"#160305", c2:"#D3121F", pat:"dots"
     },
     {
       name:"Boxing Club", initials:"BC", genre:"Fighting", status:"Update",
       creator:"Boxing Club! (Offical)",
       url:"https://www.roblox.com/games/128363930903729/Boxing-Club",
-      blurb:"Step into the ring, learn the combos, and fight your way up the league.",
-      visits:817000, live:227, maxPlayers:24,
+      blurb:"Earn while you are offline, climb to maximum popularity and fight your way to greatest of all time. In beta, improved daily.",
+      visits:839800, live:229, favourites:6067, maxPlayers:24,
       img:THUMBS.boxing, c1:"#120306", c2:"#B00E1C", pat:"stripes"
+    },
+    {
+      name:"Keycaps!", initials:"KC", genre:"Obby", status:"Live",
+      creator:"1 IQ Games",
+      url:"https://www.roblox.com/games/115018712071096/Keycaps",
+      blurb:"A two-player obby. Team up to clear the obstacles together, then take down the Keycap Remover waiting at the end.",
+      visits:424300, live:7, favourites:932, maxPlayers:18,
+      img:THUMBS.keycaps, c1:"#160305", c2:"#B00E1C", pat:"grid"
     },
     {
       name:"+1 Warrior Evolution", initials:"WE", genre:"Simulator", status:"Live",
       creator:"Red Lab Studios",
       url:"https://www.roblox.com/games/135599054283342/1-Warrior-Evolution",
       blurb:"Train your strength and become the strongest warrior. Explore new worlds, defeat powerful enemies, collect pets and climb the leaderboards.",
-      visits:350000, live:67, maxPlayers:12,
+      visits:365500, live:74, favourites:47740, maxPlayers:12,
       img:THUMBS.warrior, c1:"#1A0407", c2:"#FF2E3F", pat:"rays"
+    },
+    {
+      name:"Fly a Glider", initials:"FG", genre:"Simulator", status:"Live",
+      creator:"Dark Lit Games",
+      url:"https://www.roblox.com/games/124036223378608/Fly-a-Glider",
+      blurb:"Launch into the sky and fly farther every run. Collect wins, rebirth for more power, and unlock new areas and better gliders.",
+      visits:319600, live:58, favourites:685, maxPlayers:25,
+      img:THUMBS.glider, c1:"#1A0407", c2:"#E8202D", pat:"arcs"
+    },
+    {
+      name:"+1 Punch to Escape", initials:"PE", genre:"Simulator", status:"Live",
+      creator:"TheChickenStyle",
+      url:"https://www.roblox.com/games/130373433210095/1-Punch-to-Escape",
+      blurb:"Every punch throws a shockwave that builds power. Break walls for wins, then spend them on better fists and auras.",
+      visits:116800, live:268, favourites:5523, maxPlayers:12,
+      img:THUMBS.punch, c1:"#0E0203", c2:"#C4101E", pat:"bars"
     },
     {
       name:"Monkeys VS Walls", initials:"MW", genre:"Simulator", status:"Live",
       creator:"Dog Poundd",
       url:"https://www.roblox.com/games/80711300301173/Monkeys-VS-Walls",
       blurb:"Train to gain power, smash your head through walls to rack up wins, then spend them on better helmets and tails.",
-      visits:34910, live:15, maxPlayers:12,
+      visits:42100, live:34, favourites:3346, maxPlayers:12,
       img:THUMBS.monkeys, c1:"#0C0203", c2:"#8E0B16", pat:"grid"
-    },
-    {
-      name:"+1 Punch to Escape", initials:"PE", genre:"Simulator", status:"Live",
-      creator:"TheChickenStyle",
-      url:"https://www.roblox.com/games/130373433210095/1-Punch-to-Escape",
-      blurb:"Punch through wall after wall — stone, iron, lava, gold — training your strength to break the next one.",
-      visits:null, live:null, maxPlayers:null,
-      img:THUMBS.punch, c1:"#0E0203", c2:"#C4101E", pat:"bars"
-    },
-    {
-      name:"Fly a Glider", initials:"FG", status:"Live",
-      url:"https://www.roblox.com/games/124036223378608/Fly-a-Glider",
-      blurb:"Take off, catch the wind, and see how far you can glide.",
-      visits:null, live:null, maxPlayers:null,
-      img:THUMBS.glider, c1:"#1A0407", c2:"#E8202D", pat:"arcs"
-    },
-    {
-      name:"Keycaps", initials:"KC", status:"Live",
-      url:"https://www.roblox.com/games/115018712071096/Keycaps",
-      visits:null, live:null, maxPlayers:null,
-      img:THUMBS.keycaps, c1:"#160305", c2:"#B00E1C", pat:"grid"
     }
   ],
 };
@@ -834,14 +837,14 @@ const STUDIO = {
 const $  = (s, r = document) => r.querySelector(s);
 const $$ = (s, r = document) => [...r.querySelectorAll(s)];
 const fmt = n => Math.round(n).toLocaleString("en-US");
-const compact = n => n >= 1e6 ? (n / 1e6).toFixed(1) + "M" : n >= 1e3 ? Math.round(n / 1e3) + "k" : String(n);
+const compact = n => n >= 1e6 ? (n / 1e6).toFixed(1) + "M" : n >= 1e3 ? (n / 1e3).toFixed(1) + "k" : String(n);
 const known = (v, render = String) => v == null ? "—" : render(v);   /* — until a real number is supplied */
 const calm = matchMedia("(prefers-reduced-motion: reduce)").matches;
 const totals = () => ({
   totalVisits:   STUDIO.games.reduce((a, g) => a + (g.visits || 0), 0),
   livePlayers:   STUDIO.games.reduce((a, g) => a + (g.live || 0), 0),
-  experiences:   STUDIO.games.length,
-  biggestServer: Math.max(0, ...STUDIO.games.map(g => g.maxPlayers || 0))
+  favourites:    STUDIO.games.reduce((a, g) => a + (g.favourites || 0), 0),
+  experiences:   STUDIO.games.length
 });
 
 /* ---- bind studio details into the markup ---- */
@@ -880,7 +883,7 @@ grid.innerHTML = byVisits.map(g => `
       <dl class="game__meta">
         <div><dt>Visits</dt><dd>${known(g.visits, compact)}</dd></div>
         <div><dt>Playing</dt><dd style="color:var(--live)" data-live="${g.name}">${known(g.live)}</dd></div>
-        <div><dt>Server cap</dt><dd>${known(g.maxPlayers)}</dd></div>
+        <div><dt>Favourites</dt><dd>${known(g.favourites, compact)}</dd></div>
       </dl>
     </div>
   </article>`).join("");

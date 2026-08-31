@@ -1,4 +1,4 @@
-# Red Lab Studios — site
+# Pain Interactive — site
 
 A single-file, dependency-free marketing site for a Roblox game studio. Open
 `index.html` in a browser or drop it on any static host (GitHub Pages, Netlify,

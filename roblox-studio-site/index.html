@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Red Lab Studios — we buy Roblox games and keep them growing.">
+<meta name="description" content="Pain Interactive — we buy Roblox games and keep them growing.">
 <style>
   :root{color-scheme:dark}
   body{margin:0}
@@ -12,13 +12,13 @@
 </style>
 </head>
 <body>
-<title>Red Lab Studios</title>
+<title>Pain Interactive</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@600;700;800&family=Karla:ital,wght@0,400;0,500;0,700;1,400&family=Martian+Mono:wght@400;600&display=swap">
 <style>
 /* ============================================================
-   RED LAB STUDIOS — Roblox game studio site
+   PAIN INTERACTIVE — Roblox game studio site
    The STUDIO object at the top of the script holds the studio name,
    links and catalogue. Everything else on the page derives from it.
    ============================================================ */
@@ -386,6 +386,15 @@ section{scroll-margin-top:84px}
 }
 .steps h3{font-size:1.05rem}
 .steps p{font-size:.87rem;color:var(--text-dim)}
+.creds{
+  display:grid;gap:10px;align-items:center;
+  margin:0 0 34px;padding:22px 24px;max-width:74ch;
+  border:2px solid var(--edge-soft);border-radius:8px;
+  background:rgba(0,0,0,.3);
+}
+@media(min-width:680px){.creds{grid-template-columns:auto 1fr;gap:26px}}
+.creds .counter{font-size:clamp(1.6rem,4.6vw,2.3rem);white-space:nowrap}
+.creds span{color:var(--text-dim);font-size:.95rem}
 .acqlead{max-width:58ch;margin-bottom:40px}
 .acqlead h3{font-size:1.3rem;margin-bottom:12px}
 .acqlead p{color:var(--text-dim);font-size:.95rem}
@@ -632,6 +641,10 @@ section{scroll-margin-top:84px}
       </div>
       <a class="btn btn--solid" href="#contact">Start a conversation</a>
     </div>
+    <p class="creds reveal">
+      <b class="counter">120k CCU</b>
+      <span>The owners have owned games at that scale before this studio. We have run the servers, the economy and the moderation at peak, not just read about it.</span>
+    </p>
     <div class="acqlead reveal">
       <h3>What we look for</h3>
       <p>We look for high quality games built by ambitious people. While retention plays an important role in our offers, it will not make or break the deal.</p>
@@ -700,7 +713,7 @@ section{scroll-margin-top:84px}
       </div>
     </div>
     <div class="legal">
-      <span>© 2026 Red Lab Studios. Figures shown are pulled from each game's own Roblox page.</span>
+      <span>© 2026 Pain Interactive. Figures shown are pulled from each game's own Roblox page.</span>
       <span>Not affiliated with or endorsed by Roblox Corporation.</span>
     </div>
   </div>
@@ -731,7 +744,7 @@ const THUMBS = {
 };
 
 const STUDIO = {
-  name: "Red Lab Studios",        /* shows in the nav and footer */
+  name: "Pain Interactive",       /* shows in the nav and footer */
   links: {
     discord: "https://discord.gg/sVCdMPAEF",
     group: "#", x: "#", roblox: "#"
